@@ -6,38 +6,55 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.FragmentActivity
 import com.facebook.*
 import com.facebook.appevents.AppEventsLogger
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.thanh_nguyen.model.FacebookLoginResult
+import java.lang.Exception
 
 @SuppressLint("StaticFieldLeak")
-class LoginFacebookManager {
+class LoginFacebookManager() {
     private val loginManager = LoginManager.getInstance()
     private val callbackManager = CallbackManager.Factory.create()
+    private lateinit var activity: Activity
 
     companion object{
+        private var isInitialized = false
         fun init(context: Context){
             FacebookSdk.sdkInitialize(context)
             AppEventsLogger.activateApp(context)
-        }
-
-        fun getInstance(): LoginFacebookManager{
-            return LoginFacebookManager()
+            isInitialized = true
         }
     }
 
-    fun login(context: Activity){
+    fun register(activity: Activity){
+        if (!isInitialized)
+            throw Exception("LoginFaceBookManager not init yet, call LoginFaceBookManager.init(context) in your Application clas")
+        this.activity = activity
+    }
+
+    fun login(){
+        checkRegisteredOnActivity()
         loginManager.logInWithReadPermissions(
-            context,
+            activity,
             listOf(
                 "public_profile"
             )
         )
     }
 
-    fun loginWithCallback(context: Activity, callback: (FacebookLoginResult) -> Unit){
+    private fun checkRegisteredOnActivity(){
+        if (!this::activity.isInitialized)
+            throw Exception("LoginFaceBookManager not register yet...")
+    }
+
+    fun logout(){
+        loginManager.logOut()
+    }
+
+    fun loginWithCallback(callback: (FacebookLoginResult) -> Unit){
         loginManager.registerCallback(
             callbackManager,
             object : FacebookCallback<LoginResult>{
@@ -72,7 +89,7 @@ class LoginFacebookManager {
                 }
             }
         )
-        login(context)
+        login()
     }
 
     fun registerCallbackManager(requestCode: Int, resultCode: Int, data: Intent): Boolean{

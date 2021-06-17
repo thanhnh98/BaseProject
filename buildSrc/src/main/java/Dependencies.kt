@@ -12,6 +12,9 @@ object Versions{
 
     //Facebook
     const val facebook_android_sdk_version = "[4,5)"
+
+    //Google
+    const val play_services_auth_version = "19.0.0"
 }
 
 object Deps{
@@ -26,5 +29,6 @@ object Deps{
     const val junit_test = "androidx.test.ext:junit:${Versions.junit_test_version}"
     const val espresso_core = "androidx.test.espresso:espresso-core:${Versions.espresso_core_version}"
     const val facebook_android_sdk = "com.facebook.android:facebook-android-sdk:${Versions.facebook_android_sdk_version}"
+    const val play_services_auth = "com.google.android.gms:play-services-auth:${Versions.play_services_auth_version}"
     const val gson = "com.google.code.gson:gson:${Versions.gson_version}"
 }
