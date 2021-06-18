@@ -8,13 +8,29 @@ object Versions{
     const val junit_test_version = "1.1.2"
     const val espresso_core_version = "3.3.0"
     const val gradle_version = "4.2.1"
+
+    //Converter
     const val gson_version = "2.8.7"
+    const val moshi_version = "1.12.0"
+
+    //okhttp
+    const val okhttp_version = "4.9.1"
+
+    //okhttp
+    const val retrofit_version = "2.9.0"
 
     //Facebook
     const val facebook_android_sdk_version = "[4,5)"
 
     //Google
     const val play_services_auth_version = "19.0.0"
+
+    //Rx
+    const val rx_java_version = "3.0.0"
+    const val rx_android_version = "3.0.0"
+
+    //Coroutine
+    const val kotlinx_coroutines_android_versions = "1.3.9"
 }
 
 object Deps{
@@ -28,7 +44,17 @@ object Deps{
     const val junit = "junit:junit:${Versions.junit_version}"
     const val junit_test = "androidx.test.ext:junit:${Versions.junit_test_version}"
     const val espresso_core = "androidx.test.espresso:espresso-core:${Versions.espresso_core_version}"
+
+    //External
     const val facebook_android_sdk = "com.facebook.android:facebook-android-sdk:${Versions.facebook_android_sdk_version}"
     const val play_services_auth = "com.google.android.gms:play-services-auth:${Versions.play_services_auth_version}"
     const val gson = "com.google.code.gson:gson:${Versions.gson_version}"
+    const val rx_java = "io.reactivex.rxjava3:rxjava:${Versions.rx_java_version}"
+    const val rx_android = "io.reactivex.rxjava3:rxandroid:${Versions.rx_android_version}"
+    const val kotlinx_coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinx_coroutines_android_versions}"
+    const val moshi = "com.squareup.moshi:moshi:${Versions.moshi_version}"
+    const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp_version}"
+    const val logging_interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp_version}"
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit_version}"
+    const val converter_moshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit_version}"
 }

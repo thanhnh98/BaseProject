@@ -7,9 +7,15 @@ import android.util.Log
 import androidx.databinding.DataBindingUtil
 import com.google.gson.Gson
 import com.thanh_nguyen.baseproject.databinding.ActivityMainBinding
+import com.thanh_nguyen.baseproject.network.ApiClient
+import com.thanh_nguyen.baseproject.network.BaseRemoteDataSource
+import com.thanh_nguyen.baseproject.network.remote.AppRemoteDataSource
+import com.thanh_nguyen.baseproject.network.service.AppService
 import com.thanh_nguyen.google.login.LoginGoogleManager
 import com.thanh_nguyen.google.modle.LoginResult
 import com.thanh_nguyen.login.LoginFacebookManager
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -17,26 +23,22 @@ class MainActivity : AppCompatActivity() {
     private val loginGoogleManager = LoginGoogleManager()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        loginFacebookManager.register(this)
-        loginGoogleManager.register(this)
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        getAuthorInfo()
+        setupLoginFacebook()
+        setupLoginGoogle()
 
-        binding.loginButton.setOnClickListener {
-            loginFacebookManager.loginWithCallback{
-                Log.e("succes ?? ", "-> ok ${Gson().toJson(it)}")
-            }
-        }
+    }
 
-        binding.logoutButton.setOnClickListener {
-            loginFacebookManager.logout()
+    private fun getAuthorInfo() {
+        GlobalScope.launch {
+            val dataRes = AppRemoteDataSource().getAuthorInfo()
+            //Log.e("received", "${da}")
         }
+    }
 
-        binding.loginButton.setOnClickListener {
-            loginFacebookManager.loginWithCallback(){
-                Log.e("succes ?? ", "-> ok ${Gson().toJson(it)}")
-            }
-        }
+    private fun setupLoginGoogle() {
+        loginGoogleManager.register(this)
 
         loginGoogleManager.registerListener(object : LoginGoogleManager.GoogleCallbackManager{
             override fun onLoginFailed() {
@@ -62,6 +64,26 @@ class MainActivity : AppCompatActivity() {
 
         binding.logoutButtonGoogle.setOnClickListener {
             loginGoogleManager.logOut()
+        }
+    }
+
+    private fun setupLoginFacebook() {
+        loginFacebookManager.register(this)
+
+        binding.loginButton.setOnClickListener {
+            loginFacebookManager.loginWithCallback{
+                Log.e("succes ?? ", "-> ok ${Gson().toJson(it)}")
+            }
+        }
+
+        binding.logoutButton.setOnClickListener {
+            loginFacebookManager.logout()
+        }
+
+        binding.loginButton.setOnClickListener {
+            loginFacebookManager.loginWithCallback(){
+                Log.e("succes ?? ", "-> ok ${Gson().toJson(it)}")
+            }
         }
 
     }

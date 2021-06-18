@@ -18,14 +18,29 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+//            keyAlias keystoreProperties['keyAlias']
+//            keyPassword keystoreProperties['keyPassword']
+//            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+//            storePassword keystoreProperties['storePassword']
+        }
+    }
+
     buildTypes {
-        dev {
+        debug {
+            debuggable true
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"https://gist.githubusercontent.com/\""
+            applicationIdSuffix ".debug"
+            signingConfig signingConfigs.debug
         }
         release {
+            debuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"https://gist.githubusercontent.com/\""
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
@@ -58,4 +73,12 @@ dependencies {
     androidTestImplementation Deps.junit_test
     androidTestImplementation Deps.espresso_core
     implementation Deps.gson
+    implementation Deps.rx_android
+    implementation Deps.rx_java
+    implementation Deps.kotlinx_coroutines_android
+    implementation Deps.moshi
+    implementation Deps.okhttp
+    implementation Deps.logging_interceptor
+    implementation Deps.retrofit
+    implementation Deps.converter_moshi
 }
