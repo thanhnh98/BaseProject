@@ -86,4 +86,7 @@ dependencies {
     annotationProcessor Deps.glide_compiler
     implementation Deps.kodein_di_framework_androidx
     implementation Deps.kodein_di_generic_jvm
+    implementation Deps.recyclerview
+    implementation Deps.recyclerview_selection
+    implementation Deps.swiperefreshlayout
 }

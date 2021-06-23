@@ -35,6 +35,10 @@ object Versions{
     const val glide_version = "4.12.0"
 
     const val kodein_di_version = "6.2.1"
+
+    const val recyclerview_version = "1.2.1"
+    const val recyclerview_selection_version = "1.1.0"
+    const val swiperefreshlayout_version = "1.1.0"
 }
 
 object Deps{
@@ -66,4 +70,7 @@ object Deps{
     const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide_version}"
     const val kodein_di_framework_androidx = "org.kodein.di:kodein-di-framework-android-x:${Versions.kodein_di_version}"
     const val kodein_di_generic_jvm = "org.kodein.di:kodein-di-generic-jvm:${Versions.kodein_di_version}"
+    const val recyclerview = "androidx.recyclerview:recyclerview:${Versions.recyclerview_version}"
+    const val recyclerview_selection = "androidx.recyclerview:recyclerview-selection:${Versions.recyclerview_selection_version}"
+    const val swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swiperefreshlayout_version}"
 }

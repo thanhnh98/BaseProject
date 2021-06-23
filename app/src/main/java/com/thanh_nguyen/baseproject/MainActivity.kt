@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
+import com.thanh_nguyen.baseproject.common.base.RecycleViewAdapter
 import com.thanh_nguyen.baseproject.databinding.ActivityMainBinding
 import com.thanh_nguyen.baseproject.network.remote.AppRemoteDataSource
 import com.thanh_nguyen.google.login.LoginGoogleManager
@@ -24,7 +26,22 @@ class MainActivity : AppCompatActivity() {
         getAuthorInfo()
         setupLoginFacebook()
         setupLoginGoogle()
+        setupRecyclerView()
+    }
 
+    private fun setupRecyclerView() {
+        val adapter = RecycleViewAdapter()
+        val layoutManager = LinearLayoutManager(this)
+
+        with(adapter){
+            adapter.
+        }
+
+        with(binding.recyclerView){
+            this.layoutManager = layoutManager
+            this.adapter = adapter
+        }
+        adapter.notifyDataSetChanged()
     }
 
     private fun getAuthorInfo() {
