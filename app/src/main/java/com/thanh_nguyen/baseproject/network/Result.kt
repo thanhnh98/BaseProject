@@ -1,6 +1,5 @@
 package com.thanh_nguyen.baseproject.network
 
-import com.okxe.core_okxe.network.mapper.IMapper
 import com.thanh_nguyen.baseproject.model.respone.ErrorResponse
 
 /**
@@ -44,18 +43,18 @@ data class Result<out T>(
 
 }
 
-fun <T : Any?, O> Result<T>.mapTo(mapper: IMapper<T, O>): Result<O> {
-    return if (this.status == Result.Status.LOADING) Result.loading(null)
-    else if (this.status == Result.Status.ERROR || this.data == null) {
-        Result.error(
-            this.message ?: "",
-            errorCode = this.errorCode,
-            error = null
-        )
-    } else {
-        Result.success(mapper.map(this.data))
-    }
-}
+//fun <T : Any?, O> Result<T>.mapTo(mapper: IMapper<T, O>): Result<O> {
+//    return if (this.status == Result.Status.LOADING) Result.loading(null)
+//    else if (this.status == Result.Status.ERROR || this.data == null) {
+//        Result.error(
+//            this.message ?: "",
+//            errorCode = this.errorCode,
+//            error = null
+//        )
+//    } else {
+//        Result.success(mapper.map(this.data))
+//    }
+//}
 
 inline fun <reified T, R : Result<T>> R.onResultReceived(
     onLoading: () -> Unit,

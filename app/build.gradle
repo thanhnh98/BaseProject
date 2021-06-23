@@ -81,4 +81,9 @@ dependencies {
     implementation Deps.logging_interceptor
     implementation Deps.retrofit
     implementation Deps.converter_moshi
+    implementation Deps.converter_gson
+    implementation Deps.glide
+    annotationProcessor Deps.glide_compiler
+    implementation Deps.kodein_di_framework_androidx
+    implementation Deps.kodein_di_generic_jvm
 }

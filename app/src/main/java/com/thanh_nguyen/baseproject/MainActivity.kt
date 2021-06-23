@@ -7,10 +7,7 @@ import android.util.Log
 import androidx.databinding.DataBindingUtil
 import com.google.gson.Gson
 import com.thanh_nguyen.baseproject.databinding.ActivityMainBinding
-import com.thanh_nguyen.baseproject.network.ApiClient
-import com.thanh_nguyen.baseproject.network.BaseRemoteDataSource
 import com.thanh_nguyen.baseproject.network.remote.AppRemoteDataSource
-import com.thanh_nguyen.baseproject.network.service.AppService
 import com.thanh_nguyen.google.login.LoginGoogleManager
 import com.thanh_nguyen.google.modle.LoginResult
 import com.thanh_nguyen.login.LoginFacebookManager
@@ -32,8 +29,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun getAuthorInfo() {
         GlobalScope.launch {
-            val dataRes = AppRemoteDataSource().getAuthorInfo()
-            //Log.e("received", "${da}")
+            Log.e("start", "calling" )
+            Log.e("received", "${AppRemoteDataSource().getAuthorInfo().data}")
         }
     }
 

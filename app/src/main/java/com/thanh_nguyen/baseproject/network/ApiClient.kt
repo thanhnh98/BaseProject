@@ -1,5 +1,6 @@
 package com.thanh_nguyen.baseproject.network
 
+import com.google.gson.internal.GsonBuildConfig
 import com.squareup.moshi.Moshi
 import com.thanh_nguyen.baseproject.BuildConfig
 import okhttp3.ConnectionPool
@@ -7,6 +8,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Protocol
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
@@ -32,7 +34,7 @@ class ApiClient {
             return Retrofit.Builder()
                     .client(okkHttpClient.build())
                     .baseUrl(BuildConfig.BASE_URL)
-                    .addConverterFactory(MoshiConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(T::class.java)
         }

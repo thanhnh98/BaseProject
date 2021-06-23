@@ -31,6 +31,10 @@ object Versions{
 
     //Coroutine
     const val kotlinx_coroutines_android_versions = "1.3.9"
+
+    const val glide_version = "4.12.0"
+
+    const val kodein_di_version = "6.2.1"
 }
 
 object Deps{
@@ -57,4 +61,9 @@ object Deps{
     const val logging_interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp_version}"
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit_version}"
     const val converter_moshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit_version}"
+    const val converter_gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit_version}"
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide_version}"
+    const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide_version}"
+    const val kodein_di_framework_androidx = "org.kodein.di:kodein-di-framework-android-x:${Versions.kodein_di_version}"
+    const val kodein_di_generic_jvm = "org.kodein.di:kodein-di-generic-jvm:${Versions.kodein_di_version}"
 }

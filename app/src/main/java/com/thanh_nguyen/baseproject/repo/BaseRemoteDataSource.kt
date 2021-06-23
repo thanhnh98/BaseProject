@@ -1,10 +1,11 @@
-package com.thanh_nguyen.baseproject.network
+package com.thanh_nguyen.baseproject.repo
 
 import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.thanh_nguyen.baseproject.common.Constants
 import com.thanh_nguyen.baseproject.model.respone.ErrorResponse
+import com.thanh_nguyen.baseproject.network.Result
 import retrofit2.Response
 import kotlinx.coroutines.CancellationException
 import okhttp3.ResponseBody
@@ -18,8 +19,10 @@ abstract class BaseRemoteDataSource {
             val response = call()
             if (response.isSuccessful) {
                 val body = response.body()
-                if (body != null)
+                if (body != null) {
+                    Log.e("body", "${body}")
                     return Result.success(body)
+                }
             }
             return error(
                 " ${response.code()} ${response.message()}",
