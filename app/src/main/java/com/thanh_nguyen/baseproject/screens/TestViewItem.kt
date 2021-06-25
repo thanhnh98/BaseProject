@@ -1,17 +1,23 @@
 package com.thanh_nguyen.baseproject.screens
 
-import android.content.Context
 import android.view.LayoutInflater
-import androidx.recyclerview.widget.RecyclerView
+import android.view.ViewGroup
 import com.thanh_nguyen.baseproject.R
-import com.thanh_nguyen.baseproject.common.base.BaseRecycleViewItem
+import com.thanh_nguyen.baseproject.common.base.adapter.BindingRecycleViewItem
+import com.thanh_nguyen.baseproject.databinding.ItemTestBinding
 
-class TestViewItem: BaseRecycleViewItem<TestViewHolder>() {
-    override fun bind(viewHolder: TestViewHolder?) {
+class TestViewItem: BindingRecycleViewItem<ItemTestBinding, TestViewHolder>() {
 
+    override fun inflateViewHolder(parent: ViewGroup): TestViewHolder {
+        return TestViewHolder(
+            LayoutInflater
+                .from(parent.context)
+                .inflate(R.layout.item_test, null)
+        )
     }
 
-    override fun createViewHolder(context: Context?): RecyclerView.ViewHolder {
-        return TestViewHolder(LayoutInflater.from(context).inflate(R.layout.item_test, null))
+    override fun bindModel(binding: ItemTestBinding?, viewHolder: TestViewHolder) {
+        binding?.tvTest?.text = "HAHAHAHA BINDING"
     }
+
 }

@@ -4,7 +4,12 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.pm.PackageManager
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import com.google.gson.Gson
 import java.text.DecimalFormat
 import java.util.*
@@ -34,3 +39,12 @@ fun Date.plusMillis(millis: Long): Date {
 fun Any?.isNull() = this == null
 
 fun Double.formatPrice(pattern: String? = "###,###,###.00"): String = DecimalFormat(pattern).format(this)
+
+fun <VB: ViewDataBinding> inflateDataBinding(parent: ViewGroup, @LayoutRes layoutRes: Int, attachParent: Boolean = false): VB{
+    return DataBindingUtil.inflate(
+        LayoutInflater.from(parent.context),
+        layoutRes,
+        parent,
+        attachParent
+    )
+}
