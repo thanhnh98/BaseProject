@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
 
         with(adapter){
-            adapter.
+            //adapter.
         }
 
         with(binding.recyclerView){
