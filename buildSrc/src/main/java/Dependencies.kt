@@ -42,6 +42,9 @@ object Versions{
     const val lifecycle_viewmodel_ktx_version = "2.2.0"
     const val lifecycle_runtime_ktx_version = "2.2.0"
     const val lifecycle_livedata_ktx_version = "2.2.0"
+
+    //external
+    const val circleimageview_version = "3.1.0"
 }
 
 object Deps{
@@ -79,4 +82,5 @@ object Deps{
     const val lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle_viewmodel_ktx_version}"
     const val lifecycle_runtime_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle_runtime_ktx_version}"
     const val lifecycle_livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle_livedata_ktx_version}"
+    const val circle_imageview = "de.hdodenhof:circleimageview:${Versions.circleimageview_version}"
 }

@@ -55,3 +55,9 @@ fun inflateView(parent: ViewGroup, @LayoutRes layoutRes: Int): View{
         .from(parent.context)
         .inflate(layoutRes, null)
 }
+
+fun View.onClick(f: () -> Unit){
+    setOnClickListener {
+        f.invoke()
+    }
+}
