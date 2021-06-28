@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.thanh_nguyen.baseproject.common.base.adapter.RecyclerManager
 import com.thanh_nguyen.baseproject.databinding.ActivityMainBinding
-import com.thanh_nguyen.baseproject.network.remote.AppRemoteDataSource
+import com.thanh_nguyen.baseproject.network.remote.LoginRemoteDataSource
 import com.thanh_nguyen.baseproject.screens.TestViewItem
 import com.thanh_nguyen.baseproject.screens.test_item_2.TestItem2ViewItem
 import com.thanh_nguyen.google.login.LoginGoogleManager
@@ -56,10 +56,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getAuthorInfo() {
-        GlobalScope.launch {
-            Log.e("start", "calling" )
-            Log.e("received", "${AppRemoteDataSource().getAuthorInfo().data}")
-        }
+
     }
 
     private fun setupLoginGoogle() {

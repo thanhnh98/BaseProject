@@ -25,7 +25,7 @@ abstract class BaseActivity<DB: ViewDataBinding>: AppCompatActivity(), KodeinAwa
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, inflateStatusColor())
+        binding = DataBindingUtil.setContentView(this, inflateLayout())
         hideSystemUI()
         setStatusBarColor()
     }

@@ -1,4 +1,4 @@
-package com.thanh_nguyen.baseproject.repo
+package com.thanh_nguyen.baseproject.network.remote
 
 import android.util.Log
 import com.google.gson.Gson

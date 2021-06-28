@@ -89,4 +89,7 @@ dependencies {
     implementation Deps.recyclerview
     implementation Deps.recyclerview_selection
     implementation Deps.swiperefreshlayout
+    implementation Deps.lifecycle_viewmodel_ktx
+    implementation Deps.lifecycle_runtime_ktx
+    implementation Deps.lifecycle_livedata_ktx
 }

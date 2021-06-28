@@ -1,6 +1,10 @@
 package com.thanh_nguyen.baseproject.di
 
+import com.thanh_nguyen.baseproject.network.remote.LoginRemoteDataSource
 import org.kodein.di.Kodein
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.instance
+import org.kodein.di.generic.provider
 
 /**
  * module for remote dependencies
@@ -9,5 +13,7 @@ import org.kodein.di.Kodein
 const val REMOTE_MODULE = "remote_module"
 
 val remoteModule = Kodein.Module(REMOTE_MODULE, false){
-
+    bind() from provider {
+        LoginRemoteDataSource(instance())
+    }
 }

@@ -5,6 +5,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.pm.PackageManager
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
@@ -47,4 +48,10 @@ fun <VB: ViewDataBinding> inflateDataBinding(parent: ViewGroup, @LayoutRes layou
         parent,
         attachParent
     )
+}
+
+fun inflateView(parent: ViewGroup, @LayoutRes layoutRes: Int): View{
+    return LayoutInflater
+        .from(parent.context)
+        .inflate(layoutRes, null)
 }

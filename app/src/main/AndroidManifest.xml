@@ -12,6 +12,11 @@
         android:theme="@style/Theme.BaseProject" >
         <activity android:name=".MainActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
+
+        </activity>
+
+        <activity android:name=".screens.login.LoginActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

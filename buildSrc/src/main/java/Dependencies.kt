@@ -39,6 +39,9 @@ object Versions{
     const val recyclerview_version = "1.2.1"
     const val recyclerview_selection_version = "1.1.0"
     const val swiperefreshlayout_version = "1.1.0"
+    const val lifecycle_viewmodel_ktx_version = "2.2.0"
+    const val lifecycle_runtime_ktx_version = "2.2.0"
+    const val lifecycle_livedata_ktx_version = "2.2.0"
 }
 
 object Deps{
@@ -73,4 +76,7 @@ object Deps{
     const val recyclerview = "androidx.recyclerview:recyclerview:${Versions.recyclerview_version}"
     const val recyclerview_selection = "androidx.recyclerview:recyclerview-selection:${Versions.recyclerview_selection_version}"
     const val swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swiperefreshlayout_version}"
+    const val lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle_viewmodel_ktx_version}"
+    const val lifecycle_runtime_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle_runtime_ktx_version}"
+    const val lifecycle_livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle_livedata_ktx_version}"
 }

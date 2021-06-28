@@ -1,9 +1,15 @@
 package com.thanh_nguyen.baseproject.di
 
+import android.util.Log
 import androidx.lifecycle.ViewModelProvider
+import bindViewModel
+import com.thanh_nguyen.baseproject.repo.LoginRepository
+import com.thanh_nguyen.baseproject.screens.login.LoginViewModel
 import org.kodein.di.Kodein
 import org.kodein.di.direct
 import org.kodein.di.generic.bind
+import org.kodein.di.generic.instance
+import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
 
 
@@ -14,7 +20,11 @@ import org.kodein.di.generic.singleton
 const val VIEW_MODEL_MODULE = "view_model_module"
 
 val viewModelModule = Kodein.Module(VIEW_MODEL_MODULE, false) {
+    bind<ViewModelProvider.Factory>() with singleton {
+        ViewModelFactory(kodein.direct)
+    }
 
-    bind<ViewModelProvider.Factory>() with singleton { ViewModelFactory(kodein.direct) }
-
+    bindViewModel<LoginViewModel>() with provider {
+        LoginViewModel(instance())
+    }
 }
