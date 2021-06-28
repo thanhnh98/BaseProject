@@ -95,12 +95,6 @@ class MainActivity : AppCompatActivity() {
     private fun setupLoginFacebook() {
         loginFacebookManager.register(this)
 
-        binding.loginButton.setOnClickListener {
-            loginFacebookManager.loginWithCallback{
-                Log.e("succes ?? ", "-> ok ${Gson().toJson(it)}")
-            }
-        }
-
         binding.logoutButton.setOnClickListener {
             loginFacebookManager.logout()
         }
