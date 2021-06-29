@@ -49,7 +49,7 @@ class LoginActivity: BaseActivityMVVM<ActivityLoginBinding, LoginViewModel>() {
         loginFacebookManager.loginWithCallback {
             Log.e("success", Gson().toJson(it))
             loggedIn(
-                "https://play-lh.googleusercontent.com/5pZMqQYClc5McEjaISPkvhF8pDmlbLqraTMwk1eeqTlnUSjVxPCq-MItIrJPJGe7xW4",
+                it.avatar?:"",
                 it.name?:""
             )
         }
@@ -85,6 +85,7 @@ class LoginActivity: BaseActivityMVVM<ActivityLoginBinding, LoginViewModel>() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         loginGoogleManager.onGoogleSignedInResult(requestCode, resultCode, data)
+        loginFacebookManager.registerCallbackManager(requestCode, resultCode, data)
     }
 
 }

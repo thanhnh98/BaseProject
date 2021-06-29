@@ -5,12 +5,15 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.JsonReader
 import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import com.facebook.*
 import com.facebook.appevents.AppEventsLogger
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import com.google.gson.Gson
+import com.google.gson.JsonParser
 import com.thanh_nguyen.model.FacebookLoginResult
 import java.lang.Exception
 
@@ -37,6 +40,7 @@ class LoginFacebookManager() {
 
     fun login(){
         checkRegisteredOnActivity()
+        logout()
         loginManager.logInWithReadPermissions(
             activity,
             listOf(
@@ -65,16 +69,19 @@ class LoginFacebookManager() {
                         val email = obj.getString("email")
                         val name = obj.getString("name")
                         val id = obj.getString("id")
+                        val picture = obj.getString("picture")
+                        val avatarUrl = JsonParser.parseString(picture).asJsonObject.get("data").asJsonObject.get("url")
                         callback.invoke(FacebookLoginResult(
                             result?.accessToken?.token,
                             email = email,
                             name = name,
                             id = id,
+                            avatar = avatarUrl.toString()
                         ))
                     }
 
                     val parameters = Bundle()
-                    parameters.putString("fields", "name,email,id")
+                    parameters.putString("fields", "name,email,id,picture.type(large)")
                     request.parameters = parameters
                     request.executeAsync()
                 }
@@ -92,7 +99,7 @@ class LoginFacebookManager() {
         login()
     }
 
-    fun registerCallbackManager(requestCode: Int, resultCode: Int, data: Intent): Boolean{
+    fun registerCallbackManager(requestCode: Int, resultCode: Int, data: Intent?): Boolean{
         return callbackManager.onActivityResult(requestCode, resultCode, data)
     }
 }

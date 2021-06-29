@@ -8,4 +8,5 @@ data class FacebookLoginResult(
     val id: String?,
     val email: String?,
     val name: String?,
+    val avatar: String?
 )

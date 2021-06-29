@@ -55,7 +55,7 @@ class LoginGoogleManager {
 
     fun login(){
         checkRegisteredOnActivity()
-
+        logOut()
         val signInIntent: Intent = mGoogleSignInClient.signInIntent
         activity.startActivityForResult(signInIntent, GG_SIGN_IN_REQUEST_CODE)
     }
