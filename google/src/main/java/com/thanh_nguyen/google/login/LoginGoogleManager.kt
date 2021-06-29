@@ -13,6 +13,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.thanh_nguyen.google.modle.LoginResult
 import java.lang.Exception
+import kotlin.math.acos
 
 
 @SuppressLint("StaticFieldLeak")
@@ -89,6 +90,7 @@ class LoginGoogleManager {
             listener?.onLoginFailed()
             return
         }
+        Log.e("???","$requestCode - $resultCode")
         when(resultCode){
             Activity.RESULT_CANCELED -> listener?.onLoginCancelled()
             Activity.RESULT_OK -> listener?.onLoginSuccess(getDataAccountSignedIn(result))

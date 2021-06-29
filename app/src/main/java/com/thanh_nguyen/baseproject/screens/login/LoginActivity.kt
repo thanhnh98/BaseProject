@@ -83,9 +83,9 @@ class LoginActivity: BaseActivityMVVM<ActivityLoginBinding, LoginViewModel>() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
         loginGoogleManager.onGoogleSignedInResult(requestCode, resultCode, data)
         loginFacebookManager.registerCallbackManager(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
 }
