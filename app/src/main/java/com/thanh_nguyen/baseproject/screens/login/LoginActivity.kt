@@ -9,6 +9,7 @@ import com.google.gson.Gson
 import com.thanh_nguyen.baseproject.R
 import com.thanh_nguyen.baseproject.common.base.mvvm.activity.BaseActivityMVVM
 import com.thanh_nguyen.baseproject.databinding.ActivityLoginBinding
+import com.thanh_nguyen.baseproject.firebase.AppFirebaseMessageService
 import com.thanh_nguyen.baseproject.onClick
 import com.thanh_nguyen.baseproject.utils.loadImage
 import com.thanh_nguyen.google.login.LoginGoogleManager
@@ -37,6 +38,9 @@ class LoginActivity: BaseActivityMVVM<ActivityLoginBinding, LoginViewModel>() {
             }
             flApple.onClick {
                 loginApple()
+            }
+            fabEnter.onClick {
+                AppFirebaseMessageService.getToken()
             }
         }
     }

@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -93,4 +94,9 @@ dependencies {
     implementation Deps.lifecycle_runtime_ktx
     implementation Deps.lifecycle_livedata_ktx
     implementation Deps.circle_imageview
+
+    //firebase
+    implementation platform(Deps.firebase_bom)
+    implementation Deps.firebase_analytics_ktx
+    implementation Deps.firebase_messaging_ktx
 }

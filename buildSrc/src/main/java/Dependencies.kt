@@ -45,6 +45,11 @@ object Versions{
 
     //external
     const val circleimageview_version = "3.1.0"
+
+    //firebase
+    const val firebase_bom_version = "28.2.0"
+    const val firebase_auth_version = "21.0.1"
+    const val google_play_service_auth_version = "19.0.0"
 }
 
 object Deps{
@@ -83,4 +88,10 @@ object Deps{
     const val lifecycle_runtime_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle_runtime_ktx_version}"
     const val lifecycle_livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle_livedata_ktx_version}"
     const val circle_imageview = "de.hdodenhof:circleimageview:${Versions.circleimageview_version}"
+
+    const val firebase_messaging_ktx = "com.google.firebase:firebase-messaging-ktx"
+    const val firebase_analytics_ktx = "com.google.firebase:firebase-analytics-ktx"
+    const val firebase_bom = "com.google.firebase:firebase-bom:${Versions.firebase_bom_version}"
+    const val firebase_auth = "com.google.firebase:firebase-auth:${Versions.firebase_auth_version}"
+    const val google_play_service_auth = "com.google.android.gms:play-services-auth:${Versions.google_play_service_auth_version}"
 }
