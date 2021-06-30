@@ -8,6 +8,7 @@ import com.thanh_nguyen.baseproject.di.appModule
 import com.thanh_nguyen.baseproject.di.remoteModule
 import com.thanh_nguyen.baseproject.di.serviceModule
 import com.thanh_nguyen.baseproject.firebase.AppFirebaseMessageService
+import com.thanh_nguyen.baseproject.firebase.FirebaseManager
 import com.thanh_nguyen.google.login.LoginGoogleManager
 import com.thanh_nguyen.login.LoginFacebookManager
 import org.kodein.di.Kodein
@@ -19,6 +20,7 @@ class AppApplication: Application(), LifecycleObserver, KodeinAware {
         super.onCreate()
         context = this
         AppFirebaseMessageService.init(this)
+        FirebaseManager.init()
         LoginFacebookManager.init(this)
         LoginGoogleManager.init(this)
     }

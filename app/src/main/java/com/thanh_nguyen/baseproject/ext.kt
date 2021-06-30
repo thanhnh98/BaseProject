@@ -1,5 +1,6 @@
 package com.thanh_nguyen.baseproject
 
+import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -7,6 +8,7 @@ import android.content.pm.PackageManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -60,4 +62,8 @@ fun View.onClick(f: () -> Unit){
     setOnClickListener {
         f.invoke()
     }
+}
+
+fun Activity.showMessage(msg: String){
+    Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 }

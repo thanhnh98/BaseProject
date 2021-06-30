@@ -99,4 +99,5 @@ dependencies {
     implementation platform(Deps.firebase_bom)
     implementation Deps.firebase_analytics_ktx
     implementation Deps.firebase_messaging_ktx
+    implementation Deps.firebase_auth
 }
