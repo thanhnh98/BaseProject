@@ -1,6 +1,5 @@
 package com.thanh_nguyen.baseproject.firebase
 
-import android.R
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
