@@ -21,6 +21,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://repo.sendbird.com/public/maven" }
         jcenter() // Warning: this repository is going to shut down soon
     }
 }

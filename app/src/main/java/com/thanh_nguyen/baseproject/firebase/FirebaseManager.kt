@@ -1,8 +1,6 @@
 package com.thanh_nguyen.baseproject.firebase
 
-import android.R.attr
 import android.app.Activity
-import android.content.Context
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -16,15 +14,8 @@ import java.util.concurrent.TimeUnit
 class FirebaseManager {
     companion object{
         private lateinit var auth: FirebaseAuth
-        private var instance: FirebaseManager? = null
         fun init(){
             auth = FirebaseAuth.getInstance()
-        }
-
-        fun getInstance(): FirebaseManager{
-            if (instance == null)
-                instance = FirebaseManager()
-            return instance!!
         }
     }
 
@@ -74,5 +65,9 @@ class FirebaseManager {
             .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
+    }
+
+    fun signOut(){
+        auth.signOut()
     }
 }

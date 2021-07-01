@@ -1,6 +1,7 @@
 package com.thanh_nguyen.baseproject.common.base.mvvm.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,24 +17,59 @@ import com.thanh_nguyen.baseproject.common.base.mvvm.viewmodel.BaseCollectionVie
 
 abstract class BaseCollectionFragmentMVVM<DB: ViewDataBinding, VM: BaseCollectionViewModel> : BaseFragmentMVVM<DB, VM>() {
     private lateinit var scrollListener: EndlessRecyclerViewScrollListener
-    private val SPAN_COUNT = 2
+    private val SPAN_COUNT = 1
     private var isLoadingMore = false
     lateinit var recyclerView: RecyclerView
     lateinit var swipeRefresh: SwipeRefreshLayout
-    private var recyclerManager = RecyclerManager<Any>()
+    var recyclerManager = RecyclerManager<Any>()
     var gridLayoutManager = GridLayoutManager(context, SPAN_COUNT)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initClusters()
     }
 
-    override fun onCreateViewX(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) {
+    override fun onViewCreatedX(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreatedX(view, savedInstanceState)
         recyclerView = binding.root.findViewById(R.id.recycler_view)
         swipeRefresh = binding.root.findViewById(R.id.swipe_refresh)
+        setupRecyclerView()
+    }
+
+
+    private fun setupRecyclerView() {
+        scrollListener = object : EndlessRecyclerViewScrollListener(gridLayoutManager) {
+            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
+                if (shouldLoadMore()) {
+                    viewModel.invokeLoadMore()
+                }
+            }
+        }
+        with(recyclerView){
+            layoutManager = gridLayoutManager
+            adapter = recyclerManager.adapter
+            addOnScrollListener(scrollListener)
+        }
+
+
+        swipeRefresh.also {
+            it.setOnRefreshListener {
+                if (shouldPullToRefresh())
+                    onRefresh()
+            }
+            it.setColorSchemeColors(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.purple_200
+                )
+            )
+        }
+    }
+
+    abstract fun initClusters()
+
+    fun addCluster(cluster: Any){
+        recyclerManager.addCluster(cluster)
     }
 
     private fun initRecyclerView() {

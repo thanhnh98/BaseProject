@@ -10,9 +10,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import com.google.gson.Gson
 import java.text.DecimalFormat
 import java.util.*
@@ -66,4 +71,12 @@ fun View.onClick(f: () -> Unit){
 
 fun Activity.showMessage(msg: String){
     Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+}
+
+inline fun <reified T, reified LD: LiveData<T>> Fragment.observeLiveDataChanged(liveData: LD, crossinline onChanged: (T) -> Unit){
+    liveData.observe(viewLifecycleOwner, onChanged)
+}
+
+inline fun <reified T, reified LD: LiveData<T>> AppCompatActivity.observeLiveDataChanged(liveData: LD, observer: Observer<in T>){
+    liveData.observe(this, observer)
 }

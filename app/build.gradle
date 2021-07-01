@@ -100,4 +100,6 @@ dependencies {
     implementation Deps.firebase_analytics_ktx
     implementation Deps.firebase_messaging_ktx
     implementation Deps.firebase_auth
+
+    implementation 'com.sendbird.sdk:sendbird-android-sdk:3.0.166'
 }

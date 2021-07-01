@@ -1,5 +1,6 @@
 package com.thanh_nguyen.baseproject.common.base.adapter
 
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
@@ -20,6 +21,7 @@ class RecyclerManager<T> {
     }
 
     fun addCluster(t: T) {
+        Log.e("add cluster", "$t")
         mClusters.add(t)
         mMapRenderRange[t] = RenderRange(0, 0)
         calculateMapRenderRange()
@@ -123,7 +125,12 @@ class RecyclerManager<T> {
     fun replace(t: T, items: List<RecycleViewItem<out RecyclerView.ViewHolder>>) {
         // first remove old
         val renderRange = mMapRenderRange[t]
-        if (renderRange!!.length > 0) adapter.remove(renderRange.position, renderRange.length)
+        if (renderRange == null){
+            Log.e("replace", "section: ${t} is null")
+            return
+        }
+        Log.e("replace", "section: ${t} : data: ${items.size}")
+        if (renderRange.length > 0) adapter.remove(renderRange.position, renderRange.length)
         mMapRenderRange[t] = RenderRange(renderRange.position, items.size)
         adapter.append(renderRange.position, items)
         calculateMapRenderRange()

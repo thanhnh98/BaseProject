@@ -24,7 +24,7 @@ abstract class BaseFragment<DB: ViewDataBinding>: Fragment(), KodeinAware{
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater,inflateLayout(),container,false)
+        binding = DataBindingUtil.inflate(inflater, inflateLayout(), container,false)
         return binding.root
     }
 }

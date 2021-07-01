@@ -1,8 +1,6 @@
 package com.thanh_nguyen.baseproject.screens.login
 
-import android.content.BroadcastReceiver
 import android.content.Intent
-import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -16,14 +14,15 @@ import com.thanh_nguyen.baseproject.common.base.mvvm.activity.BaseActivityMVVM
 import com.thanh_nguyen.baseproject.databinding.ActivityLoginBinding
 import com.thanh_nguyen.baseproject.firebase.FirebaseManager
 import com.thanh_nguyen.baseproject.onClick
-import com.thanh_nguyen.baseproject.receiver.NetworkReceiver
 import com.thanh_nguyen.baseproject.receiver.SmsReceiver
+import com.thanh_nguyen.baseproject.screens.playground.PlaygroundActivity
 import com.thanh_nguyen.baseproject.showMessage
 import com.thanh_nguyen.baseproject.utils.loadImage
 import com.thanh_nguyen.google.login.LoginGoogleManager
 import com.thanh_nguyen.google.modle.LoginResult
 import com.thanh_nguyen.login.LoginFacebookManager
 import kodeinViewModel
+import org.kodein.di.generic.instance
 
 
 class LoginActivity: BaseActivityMVVM<ActivityLoginBinding, LoginViewModel>() {
@@ -34,13 +33,12 @@ class LoginActivity: BaseActivityMVVM<ActivityLoginBinding, LoginViewModel>() {
     private var loginFacebookManager = LoginFacebookManager()
     private var loginGoogleManager = LoginGoogleManager()
 
-    private val broadcast = SmsReceiver()
+    private val firebaseManager: FirebaseManager by instance()
 
     override fun onCreateX(savedInstanceState: Bundle?) {
         super.onCreateX(savedInstanceState)
         loginFacebookManager.register(this)
         loginGoogleManager.register(this)
-        registerSmsReceive()
         with(binding){
             flGoogle.onClick{
                 loginGoogle()
@@ -50,7 +48,7 @@ class LoginActivity: BaseActivityMVVM<ActivityLoginBinding, LoginViewModel>() {
             }
             flApple.onClick {
                 loginApple()
-                FirebaseManager.getInstance().verifiedPhone("+84366234132", this@LoginActivity,
+                firebaseManager.verifiedPhone("+84366234132", this@LoginActivity,
                 object :PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
                     override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                         Log.e("onVerificationCompleted", "onVerificationCompleted:" + credential)
@@ -75,12 +73,12 @@ class LoginActivity: BaseActivityMVVM<ActivityLoginBinding, LoginViewModel>() {
                     showMessage("Không được bỏ trống email/password")
                     return@onClick
                 }
-                FirebaseManager.getInstance().signIn(
+                firebaseManager.signIn(
                     edtEmail.text.toString(),
                     edtPassword.text.toString()
                 ){ isSuccess, userData ->
                     if (isSuccess)
-                        loggedIn(userData?.photoUrl.toString(), userData?.displayName?:userData?.email?:"NULL")
+                        loggedIn(userData?.photoUrl.toString(), userData?.email?:"NULL", userData?.displayName?:userData?.email?:"NULL")
                     else
                         showMessage("Đăng nhập thất bại, kiểm tra lại hoặc đăng ký mới")
                 }
@@ -90,7 +88,7 @@ class LoginActivity: BaseActivityMVVM<ActivityLoginBinding, LoginViewModel>() {
                     showMessage("Không được bỏ trống email/password")
                     return@onClick
                 }
-                FirebaseManager.getInstance().signUp(
+                firebaseManager.signUp(
                     edtEmail.text.toString(),
                     edtPassword.text.toString()
                 ){ isSuccess, userData ->
@@ -101,15 +99,9 @@ class LoginActivity: BaseActivityMVVM<ActivityLoginBinding, LoginViewModel>() {
                 }
             }
         }
-    }
-
-    private fun registerSmsReceive() {
-        val filter = IntentFilter(SmsReceiver.SMS_RECEIVED)
-        registerReceiver(broadcast, filter)
-    }
-
-    private fun unRegisterSmsReceive(){
-        unregisterReceiver(broadcast)
+        SmsReceiver.onSmsReceived.observe(this){
+            showMessage("from ${it.first}: ${it.second}")
+        }
     }
 
     private fun loginApple() {
@@ -121,6 +113,7 @@ class LoginActivity: BaseActivityMVVM<ActivityLoginBinding, LoginViewModel>() {
             Log.e("success", Gson().toJson(it))
             loggedIn(
                 it.avatar?:"",
+                it.email?:"",
                 it.name?:""
             )
         }
@@ -138,7 +131,7 @@ class LoginActivity: BaseActivityMVVM<ActivityLoginBinding, LoginViewModel>() {
             }
 
             override fun onLoginSuccess(result: LoginResult?) {
-                loggedIn(result?.avatar?:"", result?.displayName?:"")
+                loggedIn(result?.avatar?:"", result?.email?:"", result?.displayName?:"")
             }
 
             override fun onLogOutSuccess() {
@@ -146,11 +139,16 @@ class LoginActivity: BaseActivityMVVM<ActivityLoginBinding, LoginViewModel>() {
         })
     }
 
-    private fun loggedIn(avatarUrl: String, name: String){
+    private fun loggedIn(avatarUrl: String, email: String, name: String){
         binding.lnlInput.visibility = View.GONE
         binding.tvName.text = name
         loadImage(avatarUrl, binding.imgAvatar)
         binding.groupInfo.visibility = View.VISIBLE
+        startActivity(PlaygroundActivity.getInstance(
+            this,
+            email,
+            name
+        ))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -161,7 +159,6 @@ class LoginActivity: BaseActivityMVVM<ActivityLoginBinding, LoginViewModel>() {
 
     override fun onDestroy() {
         super.onDestroy()
-        unRegisterSmsReceive()
     }
 
 }

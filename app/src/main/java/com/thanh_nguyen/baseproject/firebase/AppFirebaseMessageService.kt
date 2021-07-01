@@ -38,7 +38,7 @@ class AppFirebaseMessageService: FirebaseMessagingService() {
                             Log.e(
                                 "TAG",
                                 "Fetching FCM registration token failed",
-                                task.getException()
+                                task.exception
                             )
                             return
                         }
