@@ -9,7 +9,7 @@ abstract class BaseCollectionViewModel: BaseViewModel() {
     var after: String? = null
 
     fun invokeLoadMore(){
-        if (!after.isNullOrEmpty() && _isLoadingMore.value == false)
+        if (_isLoadingMore.value == false)
             loadMore()
     }
 

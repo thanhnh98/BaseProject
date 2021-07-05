@@ -2,9 +2,8 @@ package com.thanh_nguyen.baseproject.common.base.mvvm.fragment
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.GridLayoutManager
@@ -14,6 +13,7 @@ import com.thanh_nguyen.baseproject.R
 import com.thanh_nguyen.baseproject.common.EndlessRecyclerViewScrollListener
 import com.thanh_nguyen.baseproject.common.base.adapter.RecyclerManager
 import com.thanh_nguyen.baseproject.common.base.mvvm.viewmodel.BaseCollectionViewModel
+
 
 abstract class BaseCollectionFragmentMVVM<DB: ViewDataBinding, VM: BaseCollectionViewModel> : BaseFragmentMVVM<DB, VM>() {
     private lateinit var scrollListener: EndlessRecyclerViewScrollListener
@@ -41,10 +41,16 @@ abstract class BaseCollectionFragmentMVVM<DB: ViewDataBinding, VM: BaseCollectio
         scrollListener = object : EndlessRecyclerViewScrollListener(gridLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                 if (shouldLoadMore()) {
+                    Log.e("recycler", "Loadmore")
                     viewModel.invokeLoadMore()
                 }
             }
         }
+
+        with(gridLayoutManager){
+            reverseLayout = isReverseLayout()
+        }
+
         with(recyclerView){
             layoutManager = gridLayoutManager
             adapter = recyclerManager.adapter
@@ -56,6 +62,8 @@ abstract class BaseCollectionFragmentMVVM<DB: ViewDataBinding, VM: BaseCollectio
             it.setOnRefreshListener {
                 if (shouldPullToRefresh())
                     onRefresh()
+                else
+                    hideLoading()
             }
             it.setColorSchemeColors(
                 ContextCompat.getColor(
@@ -73,13 +81,7 @@ abstract class BaseCollectionFragmentMVVM<DB: ViewDataBinding, VM: BaseCollectio
     }
 
     private fun initRecyclerView() {
-        scrollListener = object : EndlessRecyclerViewScrollListener(gridLayoutManager) {
-            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
-                if (shouldLoadMore()) {
-                    viewModel.invokeLoadMore()
-                }
-            }
-        }
+
     }
 
     open fun resetScrollingState(){
@@ -112,7 +114,14 @@ abstract class BaseCollectionFragmentMVVM<DB: ViewDataBinding, VM: BaseCollectio
         swipeRefresh.isRefreshing = true
     }
 
+    fun smoothScrollingToBottom(){
+        recyclerView.smoothScrollToPosition(recyclerView.childCount)
+        Log.e("smooth to scroll","${recyclerView}")
+    }
+
     open fun shouldLoadMore(): Boolean = true
 
     open fun shouldPullToRefresh(): Boolean = true
+
+    open fun isReverseLayout() = false
 }

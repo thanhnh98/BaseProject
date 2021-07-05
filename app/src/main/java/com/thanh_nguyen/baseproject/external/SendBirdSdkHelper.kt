@@ -2,6 +2,8 @@ package com.thanh_nguyen.baseproject.external
 
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.sendbird.android.BaseChannel
 import com.sendbird.android.BaseMessage
@@ -16,15 +18,18 @@ class SendBirdSdkHelper {
             subscribeMessageReceived()
         }
 
+        private var onMessageReceived = MutableLiveData<Pair<BaseChannel?, BaseMessage?>>()
+
         private fun subscribeMessageReceived(){
             Log.e("subscribe","OK")
             SendBird.addChannelHandler("1092109302193210", object: SendBird.ChannelHandler(){
                 override fun onMessageReceived(p0: BaseChannel?, p1: BaseMessage?) {
                     Log.e("channel ${p0?.name}", "msg: ${Gson().toJson(p1)}")
+                    onMessageReceived.postValue(Pair(p0, p1))
                 }
-
             })
         }
+
     }
 
     private var currentOpenChannel: OpenChannel? = null
@@ -40,6 +45,8 @@ class SendBirdSdkHelper {
             // The user is connected to Sendbird server.
         }
     }
+
+    fun getOnMessageReceivedListener(): LiveData<Pair<BaseChannel?, BaseMessage?>> = onMessageReceived
 
     fun createNewChannel(){
         OpenChannel.createChannel{
@@ -75,7 +82,7 @@ class SendBirdSdkHelper {
         }
     }
 
-    fun sendMessage(msg: String){
+    fun sendMessage(msg: String, isSuccess: (Boolean) -> Unit){
         if(currentOpenChannel == null)
             return
 
@@ -84,8 +91,11 @@ class SendBirdSdkHelper {
                 if(exception != null){
                     Log.e("send msg err", "error")
                     exception.printStackTrace()
+                    isSuccess.invoke(false)
+                    return@sendUserMessage
                 }
             Log.e("send success", "success: ${Gson().toJson(userMsg)}")
+            isSuccess.invoke(true)
         }
     }
 }

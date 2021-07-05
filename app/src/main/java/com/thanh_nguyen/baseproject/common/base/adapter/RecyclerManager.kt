@@ -119,7 +119,21 @@ class RecyclerManager<T> {
     }
 
     fun replaceAndUpdateIfExisted(t: T, item: RecycleViewItem<out RecyclerView.ViewHolder>) {
-        if (getLenghtOfCluster(t) > 0) update(t, 0, item) else replace(t, item)
+        if (getLenghtOfCluster(t) > 0)
+            update(t, 0, item)
+        else replace(t, item)
+    }
+
+    fun replaceAndAppendIfExist(t: T, item: RecycleViewItem<out RecyclerView.ViewHolder>){
+        if (getLenghtOfCluster(t) > 0)
+            append(t, item)
+        else replace(t, item)
+    }
+
+    fun replaceAndAppendIfExist(t: T, item: RecycleViewItem<out RecyclerView.ViewHolder>, pos: Int){
+        if (getLenghtOfCluster(t) > 0)
+            append(t, pos, item)
+        else replace(t, item)
     }
 
     fun replace(t: T, items: List<RecycleViewItem<out RecyclerView.ViewHolder>>) {
@@ -168,6 +182,14 @@ class RecyclerManager<T> {
 
     fun getLenghtOfCluster(cluster: T): Int {
         return mMapRenderRange[cluster]!!.length
+    }
+
+    fun getItemsSize(): Int {
+        var size = 0
+        mMapRenderRange.forEach {
+            size+=it.value.length
+        }
+        return size
     }
 
     init {

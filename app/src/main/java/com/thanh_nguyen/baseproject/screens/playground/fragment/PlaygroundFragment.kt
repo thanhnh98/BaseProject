@@ -1,18 +1,18 @@
 package com.thanh_nguyen.baseproject.screens.playground.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import com.google.gson.Gson
 import com.thanh_nguyen.baseproject.R
 import com.thanh_nguyen.baseproject.common.Constants
 import com.thanh_nguyen.baseproject.common.base.mvvm.fragment.BaseCollectionFragmentMVVM
 import com.thanh_nguyen.baseproject.databinding.FragmentPlaygroundBinding
-import com.thanh_nguyen.baseproject.external.SendBirdSdkHelper
 import com.thanh_nguyen.baseproject.observeLiveDataChanged
 import com.thanh_nguyen.baseproject.onClick
-import com.thanh_nguyen.baseproject.screens.TestViewItem
-import com.thanh_nguyen.baseproject.screens.test_item_2.TestItem2ViewItem
+import com.thanh_nguyen.baseproject.screens.playground.items.my_message.MyMessageRecycleViewItem
+import com.thanh_nguyen.baseproject.screens.playground.items.others_message.OtherMessageRecycleViewItem
 import kodeinViewModel
-import org.kodein.di.generic.instance
 
 class PlaygroundFragment: BaseCollectionFragmentMVVM<FragmentPlaygroundBinding, PlaygroundViewModel>() {
     companion object{
@@ -26,7 +26,6 @@ class PlaygroundFragment: BaseCollectionFragmentMVVM<FragmentPlaygroundBinding, 
         }
     }
 
-    private val sendBird: SendBirdSdkHelper by instance()
 
     private lateinit var name: String
     private lateinit var email: String
@@ -39,61 +38,73 @@ class PlaygroundFragment: BaseCollectionFragmentMVVM<FragmentPlaygroundBinding, 
         super.onCreate(savedInstanceState)
         name = arguments?.getString(Constants.BundleKey.NAME)?:"NULL"
         email = arguments?.getString(Constants.BundleKey.EMAIL)?:"NULL"
+        adjustPanOnKeyboard()
+        viewModel.connect(email)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreatedX(view, savedInstanceState)
         with(binding){
-            btnConnect.onClick {
-                //sendBird.connect(email)
-                showListItem()
-            }
-            btnCreate.onClick {
-                appendListItem()
-            }
+//            btnConnect.onClick {
+//                //sendBird.connect(email)
+//                showMyMessage("hahaha msg 1")
+//            }
+//            btnCreate.onClick {
+//                showOtherMessage("hahahaha  msg 2")
+//            }
 //            btnJoin.onClick {
 //                sendBird.joinChannel("sendbird_open_channel_4329_4163c65fcbe0026268660283b01b921add3ebbc7")
 //            }
-//            btnSend.onClick {
-//                sendBird.sendMessage(edtMsg.text.toString())
-//            }
+            btnSend.onClick {
+                if (edtMsg.text.isNotEmpty()) {
+                    viewModel.sendMessage(edtMsg.text.toString().trim())
+                    showMyMessage(edtMsg.text.toString().trim())
+                    edtMsg.setText("")
+                }
+            }
         }
 
         observeLiveDataChanged(viewModel.loadMoreData){
             appendListItem()
         }
+
+        observeLiveDataChanged(viewModel.onMessageReceived()){
+            Log.e("received", "${Gson().toJson(it.second)}")
+            showOtherMessage(it.second?.message?:return@observeLiveDataChanged)
+        }
     }
 
     override fun initClusters() {
-        addCluster(TestItem2ViewItem::class)
-        addCluster(TestViewItem::class)
+        addCluster(MyMessageRecycleViewItem::class)
     }
 
-    fun showListItem(){
-        recyclerManager.replace(TestItem2ViewItem::class, listOf(
-            TestViewItem(),
-            TestViewItem(),
-            TestViewItem(),
-            TestViewItem(),
-            TestViewItem(),
-            TestViewItem(),
-            TestViewItem(),
-            TestViewItem(),
-            TestViewItem(),
-        ))
+    private fun showListItem(){
+
     }
 
-    fun appendListItem(){
-        recyclerManager.append(TestViewItem::class, listOf(
-            TestViewItem(),
-            TestViewItem(),
-            TestViewItem(),
-            TestViewItem(),
-            TestViewItem(),
-            TestViewItem(),
-            TestViewItem(),
-            TestViewItem(),
-            TestViewItem(),
-        ))
+    private fun appendListItem(){
+
+    }
+
+    private fun showMyMessage(msg: String){
+        recyclerView.scrollToPosition(0)
+        recyclerManager.replaceAndAppendIfExist(MyMessageRecycleViewItem::class, MyMessageRecycleViewItem(msg), 0)
+    }
+
+    private fun showOtherMessage(msg: String){
+        recyclerView.scrollToPosition(0)
+        recyclerManager.replaceAndAppendIfExist(MyMessageRecycleViewItem::class, OtherMessageRecycleViewItem(msg), 0)
+    }
+
+    override fun shouldLoadMore(): Boolean {
+        return false
+    }
+
+    override fun shouldPullToRefresh(): Boolean {
+        return false
+    }
+
+    override fun isReverseLayout(): Boolean {
+        return true
     }
 }

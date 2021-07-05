@@ -50,6 +50,7 @@ object Versions{
     const val firebase_bom_version = "28.2.0"
     const val firebase_auth_version = "21.0.1"
     const val google_play_service_auth_version = "19.0.0"
+    const val photoview_version = "2.3.0"
 }
 
 object Deps{
@@ -94,4 +95,5 @@ object Deps{
     const val firebase_bom = "com.google.firebase:firebase-bom:${Versions.firebase_bom_version}"
     const val firebase_auth = "com.google.firebase:firebase-auth:${Versions.firebase_auth_version}"
     const val google_play_service_auth = "com.google.android.gms:play-services-auth:${Versions.google_play_service_auth_version}"
+    const val photoview = "com.github.chrisbanes:PhotoView:${Versions.photoview_version}"
 }

@@ -30,6 +30,6 @@ val viewModelModule = Kodein.Module(VIEW_MODEL_MODULE, false) {
     }
 
     bindViewModel<PlaygroundViewModel>() with provider {
-        PlaygroundViewModel()
+        PlaygroundViewModel(instance())
     }
 }

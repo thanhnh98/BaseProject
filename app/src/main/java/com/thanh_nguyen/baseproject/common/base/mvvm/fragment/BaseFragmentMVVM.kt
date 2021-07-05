@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.databinding.ViewDataBinding
 import com.thanh_nguyen.baseproject.common.base.mvvm.viewmodel.BaseViewModel
 
@@ -39,5 +40,9 @@ abstract class BaseFragmentMVVM<DB: ViewDataBinding, VM: BaseViewModel>: BaseFra
 
     open fun hideLoading(){
 
+    }
+
+    fun adjustPanOnKeyboard(){
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN or WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
     }
 }
