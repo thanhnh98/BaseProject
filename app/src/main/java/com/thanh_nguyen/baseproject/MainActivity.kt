@@ -6,6 +6,7 @@ import com.thanh_nguyen.baseproject.common.base.mvvm.activity.BaseActivity
 import com.thanh_nguyen.baseproject.databinding.ActivityMainBinding
 import com.thanh_nguyen.baseproject.screens.login.LoginActivity
 import com.thanh_nguyen.baseproject.screens.motion_layout.MotionActivity
+import com.thanh_nguyen.youtubeapidemo.YouTubeAPIDemoActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,6 +17,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             }
             btnOther.onClick {
                 startActivity(Intent(this@MainActivity, MotionActivity::class.java))
+            }
+            btnYoutubePlayer.onClick {
+                startActivity(Intent(this@MainActivity, YouTubeAPIDemoActivity::class.java))
             }
         }
     }

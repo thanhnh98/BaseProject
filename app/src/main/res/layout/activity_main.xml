@@ -23,6 +23,20 @@
             />
 
         <Button
+            android:id="@+id/btn_youtube_player"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp"
+            android:textStyle="bold"
+            android:text="Youtube Player"
+            android:textSize="32sp"
+            android:gravity="center_horizontal"
+            android:background="@color/md_red_200"
+            android:textColor="@color/white"
+            android:layout_marginTop="16dp"
+            />
+
+        <Button
             android:id="@+id/btn_other"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

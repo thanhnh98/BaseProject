@@ -1,20 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: com.facebook.android:facebook-applinks:4.42.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cdc857748095e4a407a2e057592f1c40/jetified-facebook-applinks-4.42.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fdc9bf9001b0b37044347d4268462a0e/jetified-facebook-applinks-4.42.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bd36f919f074682b67b9f1b3a6e1e099/jetified-facebook-applinks-4.42.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/84c8335edb3a24acdc5b3c586ccf3f27/jetified-facebook-applinks-4.42.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ae68b465e6a6851a672ac80f8993f867/jetified-facebook-applinks-4.42.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b51cddb1a44a30bdd327efe700a804a9/jetified-facebook-applinks-4.42.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0f6d27843af1be07687b126f740de22d/jetified-facebook-applinks-4.42.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/57ee2283372fb0b4fb24f317f00b1f6a/jetified-facebook-applinks-4.42.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/682a49b248b7bcc1003e269c840b1ca3/jetified-facebook-applinks-4.42.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9a685129e3304a1a755ea90046c0530f/jetified-facebook-applinks-4.42.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a6d3deaac7da090edb3abb6f2e9128ae/jetified-facebook-applinks-4.42.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9aa9e16ed8fc0de1ef1b58fb73b42a65/jetified-facebook-applinks-4.42.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9aa9e16ed8fc0de1ef1b58fb73b42a65/jetified-facebook-applinks-4.42.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9aa9e16ed8fc0de1ef1b58fb73b42a65/jetified-facebook-applinks-4.42.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/189a29bc6f54204fd2dc90661bb93167/jetified-facebook-applinks-4.42.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2f0cd14dc922acd7cbf26a99813f7190/jetified-facebook-applinks-4.42.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2f0cd14dc922acd7cbf26a99813f7190/jetified-facebook-applinks-4.42.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2f0cd14dc922acd7cbf26a99813f7190/jetified-facebook-applinks-4.42.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.android/facebook-applinks/4.42.0/57bdc182ac0aa0856985aa1e8b48e82e47c7dcbc/facebook-applinks-4.42.0-javadoc.jar!/" />
