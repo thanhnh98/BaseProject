@@ -8,37 +8,42 @@ import com.thanh_nguyen.baseproject.model.respone.ErrorResponse
 import com.thanh_nguyen.baseproject.network.Result
 import retrofit2.Response
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import okhttp3.ResponseBody
 
 /**
  * Abstract Base Data source class with error handling
  */
 abstract class BaseRemoteDataSource {
-    protected suspend fun <T> getResult(call: suspend () -> Response<T>): Result<T> {
-        try {
-            val response = call()
-            if (response.isSuccessful) {
-                val body = response.body()
-                if (body != null) {
-                    Log.e("body", "${body}")
-                    return Result.success(body)
+    protected fun <T> getResult(call: suspend () -> Response<T>): Flow<Result<T>> {
+        return flow {
+            try {
+                val response = call()
+                if (response.isSuccessful) {
+                    val body = response.body()
+                    if (body != null) {
+                        emit(Result.success(body))
+                        return@flow
+                    }
                 }
-            }
-            return error(
-                " ${response.code()} ${response.message()}",
-                response.errorBody(),
-                errorCode = response.code()
-            )
-        } catch (e: Exception) {
-            e.printStackTrace()
-            return when (e) {
-                is CancellationException ->
-                    error(
-                        e.message ?: e.toString(),
-                        null,
-                        errorCode = Constants.Exception.CANCELLATION_EXCEPTION
-                    )
-                else -> error(e.message ?: e.toString(), null, errorCode = null)
+                emit(error<T>(
+                    " ${response.code()} ${response.message()}",
+                    response.errorBody(),
+                    errorCode = response.code()
+                ))
+            } catch (e: Exception) {
+                e.printStackTrace()
+                when (e) {
+                    is CancellationException ->
+                        emit(error<T>(
+                            e.message ?: e.toString(),
+                            null,
+                            errorCode = Constants.Exception.CANCELLATION_EXCEPTION
+                        ))
+                    else -> emit(error<T>(e.message ?: e.toString(), null, errorCode = null))
+                }
             }
         }
     }

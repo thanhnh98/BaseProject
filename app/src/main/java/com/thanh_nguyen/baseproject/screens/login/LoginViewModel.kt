@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.thanh_nguyen.baseproject.common.base.mvvm.viewmodel.BaseViewModel
 import com.thanh_nguyen.baseproject.repo.LoginRepository
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val loginRepo: LoginRepository): BaseViewModel() {
@@ -16,8 +17,9 @@ class LoginViewModel(private val loginRepo: LoginRepository): BaseViewModel() {
 
     private fun getAuthorInfo(){
         viewModelScope.launch {
-            val res = loginRepo.getAuthorInfo()
-            Log.e("data", Gson().toJson(res))
+            val res = loginRepo.getAuthorInfo().collect {
+                Log.e("data", Gson().toJson(it))
+            }
         }
     }
 }
