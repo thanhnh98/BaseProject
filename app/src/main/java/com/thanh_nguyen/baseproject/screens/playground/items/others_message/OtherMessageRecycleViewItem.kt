@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import com.thanh_nguyen.baseproject.R
 import com.thanh_nguyen.baseproject.common.base.adapter.BindingRecycleViewItem
 import com.thanh_nguyen.baseproject.databinding.ItemOtherMessageBinding
-import com.thanh_nguyen.baseproject.inflateView
+import com.thanh_nguyen.baseproject.utils.inflateView
 
 class OtherMessageRecycleViewItem(val msg: String): BindingRecycleViewItem<ItemOtherMessageBinding, OtherMessageRecycleVH>() {
     override fun inflateViewHolder(parent: ViewGroup): OtherMessageRecycleVH {

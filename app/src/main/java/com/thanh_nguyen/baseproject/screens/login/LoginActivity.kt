@@ -13,10 +13,10 @@ import com.thanh_nguyen.baseproject.R
 import com.thanh_nguyen.baseproject.common.base.mvvm.activity.BaseActivityMVVM
 import com.thanh_nguyen.baseproject.databinding.ActivityLoginBinding
 import com.thanh_nguyen.baseproject.firebase.FirebaseManager
-import com.thanh_nguyen.baseproject.onClick
+import com.thanh_nguyen.baseproject.utils.onClick
 import com.thanh_nguyen.baseproject.receiver.SmsReceiver
 import com.thanh_nguyen.baseproject.screens.playground.PlaygroundActivity
-import com.thanh_nguyen.baseproject.showMessage
+import com.thanh_nguyen.baseproject.utils.showMessage
 import com.thanh_nguyen.baseproject.utils.loadImage
 import com.thanh_nguyen.google.login.LoginGoogleManager
 import com.thanh_nguyen.google.modle.LoginResult

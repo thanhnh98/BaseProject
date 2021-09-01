@@ -66,6 +66,7 @@ dependencies {
     implementation project(Modules.facebook)
     implementation project(Modules.google)
     implementation project(Modules.youtube)
+    implementation project(Modules.image_compressor)
     implementation Deps.stdlib
     implementation Deps.core_ktx
     implementation Deps.appcompat
@@ -102,5 +103,5 @@ dependencies {
     implementation Deps.firebase_messaging_ktx
     implementation Deps.firebase_auth
 
-    implementation 'com.sendbird.sdk:sendbird-android-sdk:3.0.166'
+    implementation Deps.send_bird
 }

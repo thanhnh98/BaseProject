@@ -1,20 +1,14 @@
-package com.okxe.image_compressor
+package com.thanh_nguyen.image_compressor
 
 import android.content.Context
 import android.net.Uri
-import com.okxe.image_compressor.constraint.Compression
-import com.okxe.image_compressor.constraint.default
+import com.thanh_nguyen.image_compressor.constraint.Compression
+import com.thanh_nguyen.image_compressor.constraint.default
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
 import kotlin.coroutines.CoroutineContext
 
-/**
- * Created on : January 22, 2020
- * Author     : zetbaitsu
- * Name       : Zetra
- * GitHub     : https://github.com/zetbaitsu
- */
 object ImageCompressor {
     suspend fun compress(
             context: Context,

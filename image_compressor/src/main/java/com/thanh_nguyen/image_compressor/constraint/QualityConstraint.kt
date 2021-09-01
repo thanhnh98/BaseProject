@@ -1,7 +1,7 @@
-package com.okxe.image_compressor.constraint
+package com.thanh_nguyen.image_compressor.constraint
 
-import com.okxe.image_compressor.loadBitmap
-import com.okxe.image_compressor.overWrite
+import com.thanh_nguyen.image_compressor.loadBitmap
+import com.thanh_nguyen.image_compressor.overWrite
 import java.io.File
 
 /**

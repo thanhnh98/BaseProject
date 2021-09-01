@@ -8,8 +8,8 @@ import com.thanh_nguyen.baseproject.R
 import com.thanh_nguyen.baseproject.common.Constants
 import com.thanh_nguyen.baseproject.common.base.mvvm.fragment.BaseCollectionFragmentMVVM
 import com.thanh_nguyen.baseproject.databinding.FragmentPlaygroundBinding
-import com.thanh_nguyen.baseproject.observeLiveDataChanged
-import com.thanh_nguyen.baseproject.onClick
+import com.thanh_nguyen.baseproject.utils.observeLiveDataChanged
+import com.thanh_nguyen.baseproject.utils.onClick
 import com.thanh_nguyen.baseproject.screens.playground.items.my_message.MyMessageRecycleViewItem
 import com.thanh_nguyen.baseproject.screens.playground.items.others_message.OtherMessageRecycleViewItem
 import kodeinViewModel

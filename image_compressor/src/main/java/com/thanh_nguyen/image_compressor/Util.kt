@@ -1,4 +1,4 @@
-package com.okxe.image_compressor
+package com.thanh_nguyen.image_compressor
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -11,12 +11,6 @@ import java.io.FileInputStream
 import java.io.FileOutputStream
 
 
-/**
- * Created on : January 24, 2020
- * Author     : zetbaitsu
- * Name       : Zetra
- * GitHub     : https://github.com/zetbaitsu
- */
 private val separator = File.separator
 
 private fun cachePath(context: Context) = "${context.cacheDir.path}${separator}compressor$separator"

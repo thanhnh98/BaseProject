@@ -5,7 +5,7 @@ import android.util.Log
 import com.thanh_nguyen.baseproject.R
 import com.thanh_nguyen.baseproject.common.base.mvvm.activity.BaseActivity
 import com.thanh_nguyen.baseproject.databinding.ActivityMotionBinding
-import com.thanh_nguyen.baseproject.onClick
+import com.thanh_nguyen.baseproject.utils.onClick
 
 class MotionActivity: BaseActivity<ActivityMotionBinding>() {
     override fun inflateLayout(): Int = R.layout.activity_motion

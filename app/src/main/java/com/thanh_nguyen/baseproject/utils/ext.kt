@@ -1,4 +1,4 @@
-package com.thanh_nguyen.baseproject
+package com.thanh_nguyen.baseproject.utils
 
 import android.app.Activity
 import android.content.ClipData

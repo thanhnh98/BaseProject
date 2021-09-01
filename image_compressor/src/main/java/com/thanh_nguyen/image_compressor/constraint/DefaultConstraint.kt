@@ -1,17 +1,11 @@
-package com.okxe.image_compressor.constraint
+package com.thanh_nguyen.image_compressor.constraint
 
 import android.graphics.Bitmap
-import com.okxe.image_compressor.decodeSampledBitmapFromFile
-import com.okxe.image_compressor.determineImageRotation
-import com.okxe.image_compressor.overWrite
+import com.thanh_nguyen.image_compressor.decodeSampledBitmapFromFile
+import com.thanh_nguyen.image_compressor.determineImageRotation
+import com.thanh_nguyen.image_compressor.overWrite
 import java.io.File
 
-/**
- * Created on : January 25, 2020
- * Author     : zetbaitsu
- * Name       : Zetra
- * GitHub     : https://github.com/zetbaitsu
- */
 class DefaultConstraint(
         private val width: Int = 612,
         private val height: Int = 816,

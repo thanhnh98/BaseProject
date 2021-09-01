@@ -1,4 +1,4 @@
-package com.okxe.image_compressor.constraint
+package com.thanh_nguyen.image_compressor.constraint
 
 import java.io.File
 

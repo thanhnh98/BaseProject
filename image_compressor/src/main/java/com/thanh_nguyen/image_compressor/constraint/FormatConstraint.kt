@@ -1,9 +1,9 @@
-package com.okxe.image_compressor.constraint
+package com.thanh_nguyen.image_compressor.constraint
 
 import android.graphics.Bitmap
-import com.okxe.image_compressor.compressFormat
-import com.okxe.image_compressor.loadBitmap
-import com.okxe.image_compressor.overWrite
+import com.thanh_nguyen.image_compressor.compressFormat
+import com.thanh_nguyen.image_compressor.loadBitmap
+import com.thanh_nguyen.image_compressor.overWrite
 import java.io.File
 
 /**

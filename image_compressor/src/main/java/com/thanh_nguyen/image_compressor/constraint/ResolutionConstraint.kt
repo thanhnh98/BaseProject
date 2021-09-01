@@ -1,10 +1,10 @@
-package com.okxe.image_compressor.constraint
+package com.thanh_nguyen.image_compressor.constraint
 
 import android.graphics.BitmapFactory
-import com.okxe.image_compressor.calculateInSampleSize
-import com.okxe.image_compressor.decodeSampledBitmapFromFile
-import com.okxe.image_compressor.determineImageRotation
-import com.okxe.image_compressor.overWrite
+import com.thanh_nguyen.image_compressor.calculateInSampleSize
+import com.thanh_nguyen.image_compressor.decodeSampledBitmapFromFile
+import com.thanh_nguyen.image_compressor.determineImageRotation
+import com.thanh_nguyen.image_compressor.overWrite
 import java.io.File
 
 /**

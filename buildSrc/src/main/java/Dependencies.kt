@@ -52,6 +52,8 @@ object Versions{
     const val google_play_service_auth_version = "19.0.0"
     const val photoview_version = "2.3.0"
     const val billing_version = "4.0.0"
+
+    const val send_bird_version = "3.0.166"
 }
 
 object Deps{
@@ -98,4 +100,6 @@ object Deps{
     const val google_play_service_auth = "com.google.android.gms:play-services-auth:${Versions.google_play_service_auth_version}"
     const val photoview = "com.github.chrisbanes:PhotoView:${Versions.photoview_version}"
     const val google_billing = "com.android.billingclient:billing-ktx:${Versions.billing_version}"
+
+    const val send_bird = "com.sendbird.sdk:sendbird-android-sdk:${Versions.send_bird_version}"
 }
