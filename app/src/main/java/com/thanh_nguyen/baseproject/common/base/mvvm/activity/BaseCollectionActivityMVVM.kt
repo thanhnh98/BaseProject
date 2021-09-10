@@ -1,6 +1,7 @@
 package com.thanh_nguyen.baseproject.common.base.mvvm.activity
 
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,17 +13,20 @@ import com.thanh_nguyen.baseproject.common.base.mvvm.viewmodel.BaseCollectionVie
 
 abstract class BaseCollectionActivityMVVM<DB: ViewDataBinding, VM: BaseCollectionViewModel>: BaseActivityMVVM<DB, VM>() {
     private lateinit var scrollListener: EndlessRecyclerViewScrollListener
-    private val SPAN_COUNT = 2
     lateinit var recyclerView: RecyclerView
     lateinit var swipeRefresh: SwipeRefreshLayout
     var recyclerManager = RecyclerManager<Any>()
-    var gridLayoutManager = GridLayoutManager(this, SPAN_COUNT)
+    var gridLayoutManager = GridLayoutManager(this, spanCount())
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateX(savedInstanceState: Bundle?) {
         recyclerView = binding.root.findViewById(R.id.recycler_view)
         swipeRefresh = binding.root.findViewById(R.id.swipe_refresh)
         addBottomLoadingItem()
+        initClusters()
         initRecyclerView()
     }
 
@@ -36,6 +40,28 @@ abstract class BaseCollectionActivityMVVM<DB: ViewDataBinding, VM: BaseCollectio
                     viewModel.invokeLoadMore()
                 }
             }
+        }
+
+        with(recyclerView){
+            layoutManager = gridLayoutManager
+            adapter = recyclerManager.adapter
+            addOnScrollListener(scrollListener)
+        }
+
+
+        swipeRefresh.also {
+            it.setOnRefreshListener {
+                if (shouldPullToRefresh())
+                    onRefresh()
+                else
+                    hideLoading()
+            }
+            it.setColorSchemeColors(
+                ContextCompat.getColor(
+                    this,
+                    R.color.purple_200
+                )
+            )
         }
     }
 
@@ -70,4 +96,16 @@ abstract class BaseCollectionActivityMVVM<DB: ViewDataBinding, VM: BaseCollectio
     }
 
     open fun shouldLoadMore(): Boolean = true
+
+    abstract fun initClusters()
+
+    fun addCluster(cluster: Any){
+        recyclerManager.addCluster(cluster)
+    }
+
+    open fun shouldPullToRefresh(): Boolean = true
+
+    open fun isReverseLayout() = false
+
+    fun spanCount() = 1
 }

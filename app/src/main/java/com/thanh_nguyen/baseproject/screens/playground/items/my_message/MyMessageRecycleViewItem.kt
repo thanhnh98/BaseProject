@@ -4,16 +4,13 @@ import android.view.ViewGroup
 import com.thanh_nguyen.baseproject.R
 import com.thanh_nguyen.baseproject.common.base.adapter.BindingRecycleViewItem
 import com.thanh_nguyen.baseproject.databinding.ItemMyMessageBinding
-import com.thanh_nguyen.baseproject.utils.inflateView
+import com.thanh_nguyen.baseproject.utils.createViewHolder
 
-class MyMessageRecycleViewItem(val msg: String): BindingRecycleViewItem<ItemMyMessageBinding, MyMessageRecyclerVH>() {
+class MyMessageRecycleViewItem(private val msg: String): BindingRecycleViewItem<ItemMyMessageBinding, MyMessageRecyclerVH>() {
     override fun inflateViewHolder(parent: ViewGroup): MyMessageRecyclerVH {
-        return MyMessageRecyclerVH(
-            inflateView(
-                parent,
-                R.layout.item_my_message
-            )
-        )
+        return parent.createViewHolder(R.layout.item_my_message){
+            MyMessageRecyclerVH(it)
+        }
     }
 
     override fun bindModel(binding: ItemMyMessageBinding?, viewHolder: MyMessageRecyclerVH) {

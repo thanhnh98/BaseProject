@@ -1,9 +1,8 @@
 package com.thanh_nguyen.baseproject.di
 
-import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import bindViewModel
-import com.thanh_nguyen.baseproject.repo.LoginRepository
+import com.thanh_nguyen.baseproject.screens.cgv_clone.CgvLandingViewModel
 import com.thanh_nguyen.baseproject.screens.login.LoginViewModel
 import com.thanh_nguyen.baseproject.screens.playground.fragment.PlaygroundViewModel
 import org.kodein.di.Kodein
@@ -31,5 +30,9 @@ val viewModelModule = Kodein.Module(VIEW_MODEL_MODULE, false) {
 
     bindViewModel<PlaygroundViewModel>() with provider {
         PlaygroundViewModel(instance())
+    }
+
+    bindViewModel<CgvLandingViewModel>() with provider {
+        CgvLandingViewModel()
     }
 }

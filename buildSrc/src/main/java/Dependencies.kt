@@ -6,7 +6,7 @@ object Versions{
     const val constraintlayout_version = "2.0.4"
     const val junit_version = "4.+"
     const val junit_test_version = "1.1.2"
-    const val espresso_core_version = "3.3.0"
+    const val espresso_core_version = "3.4.0"
     const val gradle_version = "4.2.1"
 
     //Converter

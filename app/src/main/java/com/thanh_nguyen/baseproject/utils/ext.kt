@@ -18,7 +18,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
+import com.thanh_nguyen.baseproject.common.base.adapter.RecycleViewHolder
+import com.thanh_nguyen.baseproject.common.base.mvvm.viewmodel.BaseViewModel
 import java.text.DecimalFormat
 import java.util.*
 
@@ -57,10 +60,14 @@ fun <VB: ViewDataBinding> inflateDataBinding(parent: ViewGroup, @LayoutRes layou
     )
 }
 
-fun inflateView(parent: ViewGroup, @LayoutRes layoutRes: Int): View{
-    return LayoutInflater
-        .from(parent.context)
-        .inflate(layoutRes, null)
+inline fun <reified T: RecyclerView.ViewHolder> ViewGroup.createViewHolder(
+    @LayoutRes layoutRes: Int,
+    attachParent: Boolean? = false,
+    createVH: (View) -> T): T{
+    return createVH(LayoutInflater
+        .from(context)
+        .inflate(layoutRes, this, attachParent?:false)
+    )
 }
 
 fun View.onClick(f: () -> Unit){
