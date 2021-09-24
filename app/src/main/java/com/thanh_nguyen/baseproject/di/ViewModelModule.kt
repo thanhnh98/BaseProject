@@ -1,11 +1,9 @@
 package com.thanh_nguyen.baseproject.di
 
-import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import bindViewModel
-import com.thanh_nguyen.baseproject.repo.LoginRepository
-import com.thanh_nguyen.baseproject.screens.login.LoginViewModel
-import com.thanh_nguyen.baseproject.screens.playground.fragment.PlaygroundViewModel
+import com.thanh_nguyen.baseproject.app.presentation.ui.login.LoginViewModel
+import com.thanh_nguyen.baseproject.app.presentation.ui.playground.fragment.PlaygroundViewModel
 import org.kodein.di.Kodein
 import org.kodein.di.direct
 import org.kodein.di.generic.bind

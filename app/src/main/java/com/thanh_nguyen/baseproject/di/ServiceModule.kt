@@ -1,10 +1,9 @@
 package com.thanh_nguyen.baseproject.di
 
-import com.thanh_nguyen.baseproject.network.ApiClient
-import com.thanh_nguyen.baseproject.service.LoginService
+import com.thanh_nguyen.baseproject.app.data.network.ApiClient
+import com.thanh_nguyen.baseproject.app.data.service.LoginService
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
-import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
 
 const val SERVICE_MODULE = "SERVICE_MODULE"

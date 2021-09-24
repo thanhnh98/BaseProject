@@ -104,4 +104,5 @@ dependencies {
     implementation Deps.firebase_auth
 
     implementation Deps.send_bird
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 }

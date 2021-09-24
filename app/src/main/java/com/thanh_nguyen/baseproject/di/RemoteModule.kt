@@ -1,6 +1,6 @@
 package com.thanh_nguyen.baseproject.di
 
-import com.thanh_nguyen.baseproject.network.remote.LoginRemoteDataSource
+import com.thanh_nguyen.baseproject.app.data.data_source.remote.LoginRemoteDataSource
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance

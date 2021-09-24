@@ -3,7 +3,6 @@ package com.thanh_nguyen.baseproject.common.base.mvvm.fragment
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.GridLayoutManager

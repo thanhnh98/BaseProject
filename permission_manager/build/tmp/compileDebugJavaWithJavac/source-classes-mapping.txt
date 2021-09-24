@@ -1,0 +1,2 @@
+com/thanh_nguyen/permission_manager/BuildConfig.java
+ com.thanh_nguyen.permission_manager.BuildConfig
