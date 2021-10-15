@@ -14,7 +14,6 @@ import com.thanh_nguyen.baseproject.common.base.mvvm.activity.BaseActivityMVVM
 import com.thanh_nguyen.baseproject.databinding.ActivityLoginBinding
 import com.thanh_nguyen.baseproject.external.firebase.FirebaseManager
 import com.thanh_nguyen.baseproject.receiver.SmsReceiver
-import com.thanh_nguyen.baseproject.app.presentation.ui.playground.PlaygroundActivity
 import com.thanh_nguyen.baseproject.utils.showMessage
 import com.thanh_nguyen.baseproject.utils.loadImage
 import com.thanh_nguyen.baseproject.utils.onClick
@@ -144,11 +143,7 @@ class LoginActivity: BaseActivityMVVM<ActivityLoginBinding, LoginViewModel>() {
         binding.tvName.text = name
         loadImage(avatarUrl, binding.imgAvatar)
         binding.groupInfo.visibility = View.VISIBLE
-        startActivity(PlaygroundActivity.getInstance(
-            this,
-            email,
-            name
-        ))
+        showMessage("Logged in with: $email")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

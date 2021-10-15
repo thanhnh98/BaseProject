@@ -1,6 +1,5 @@
 package com.thanh_nguyen.baseproject.app.model.respone
 
-import com.thanh_nguyen.baseproject.app.model.respone.ErrorResponse
 
 /**
  * A generic class that holds a value with its loading status.

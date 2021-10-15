@@ -26,26 +26,16 @@
 
         <activity android:name=".app.presentation.ui.MainActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
+
+        </activity>
+
+        <activity android:name="com.thanh_nguyen.baseproject.app.presentation.ui.login.LoginActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <activity android:name="com.thanh_nguyen.baseproject.app.presentation.ui.playground.PlaygroundActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustResize">
-
-        </activity>
-
-        <activity android:name="com.thanh_nguyen.baseproject.app.presentation.ui.motion_layout.MotionActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
-
-        <activity android:name="com.thanh_nguyen.baseproject.app.presentation.ui.login.LoginActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
         </activity>
 
         <receiver android:name=".receiver.SmsReceiver">

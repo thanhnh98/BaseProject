@@ -64,9 +64,13 @@ object Deps{
     const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat_version}"
     const val material = "com.google.android.material:material:${Versions.material_version}"
     const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintlayout_version}"
+
+    //Testing
     const val junit = "junit:junit:${Versions.junit_version}"
     const val junit_test = "androidx.test.ext:junit:${Versions.junit_test_version}"
     const val espresso_core = "androidx.test.espresso:espresso-core:${Versions.espresso_core_version}"
+    const val google_truth = "com.google.truth:truth:1.0.1"
+    const val mockito_core = "com.mockito:mockito-core:2.21.0"
 
     //External
     const val facebook_android_sdk = "com.facebook.android:facebook-android-sdk:${Versions.facebook_android_sdk_version}"

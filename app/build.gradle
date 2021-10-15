@@ -72,9 +72,17 @@ dependencies {
     implementation Deps.appcompat
     implementation Deps.material
     implementation Deps.constraintlayout
+
+    //local test
     testImplementation Deps.junit
+    testImplementation Deps.google_truth
+
+    //instrumented test
     androidTestImplementation Deps.junit_test
+    androidTestImplementation Deps.google_truth
     androidTestImplementation Deps.espresso_core
+    androidTestImplementation Deps.mockito_core
+
     implementation Deps.gson
     implementation Deps.rx_android
     implementation Deps.rx_java

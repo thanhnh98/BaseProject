@@ -3,7 +3,6 @@ package com.thanh_nguyen.baseproject.di
 import androidx.lifecycle.ViewModelProvider
 import bindViewModel
 import com.thanh_nguyen.baseproject.app.presentation.ui.login.LoginViewModel
-import com.thanh_nguyen.baseproject.app.presentation.ui.playground.fragment.PlaygroundViewModel
 import org.kodein.di.Kodein
 import org.kodein.di.direct
 import org.kodein.di.generic.bind
@@ -25,9 +24,5 @@ val viewModelModule = Kodein.Module(VIEW_MODEL_MODULE, false) {
 
     bindViewModel<LoginViewModel>() with provider {
         LoginViewModel(instance())
-    }
-
-    bindViewModel<PlaygroundViewModel>() with provider {
-        PlaygroundViewModel(instance())
     }
 }
