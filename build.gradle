@@ -21,7 +21,12 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven { url "https://repo.sendbird.com/public/maven" }
+        maven {
+            url "https://repo.sendbird.com/public/maven"
+        }
+        maven {
+            url "https://.sonatype.org/content/repositories/snapshots/"
+        }
         jcenter() // Warning: this repository is going to shut down soon
     }
 }
