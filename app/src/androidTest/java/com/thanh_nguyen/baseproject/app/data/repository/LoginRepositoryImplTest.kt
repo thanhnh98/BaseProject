@@ -9,16 +9,17 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.gson.Gson
 import com.thanh_nguyen.baseproject.app.data.database.StorageDatabase
 import com.thanh_nguyen.baseproject.app.model.entities.StorageItemEntity
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
-import okhttp3.internal.wait
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -26,16 +27,19 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import kotlin.random.Random
 
+@ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
+@SmallTest
 class LoginRepositoryImplTest{
+    val appContext = InstrumentationRegistry.getInstrumentation().targetContext
 
     @get:Rule
-    var instantTaskExecutorRule = InstantTaskExecutorRule()
-    val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+    val instantTaskExecutorRule = InstantTaskExecutorRule()
     lateinit var db: StorageDatabase
-
+    //private val mainThreadSurrogate = newSingleThreadContext("UI thread")
     @Before
     fun before(){
+        //Dispatchers.setMain(mainThreadSurrogate)
         db = Room.inMemoryDatabaseBuilder(
             ApplicationProvider.getApplicationContext(),
             StorageDatabase::class.java
@@ -45,27 +49,30 @@ class LoginRepositoryImplTest{
     @After
     fun tearDown(){
         db.close()
+        //Dispatchers.resetMain() // reset main dispatcher to the original Main dispatcher
+        //mainThreadSurrogate.close()
     }
 
     @Test
-    fun testGetAllItems() = runBlocking {
-        print("zô rồi")
+    fun testGetAllItems() = runBlockingTest {
         db.storageItemDao().getAllItems().collect {
             Log.e("THANH","get all items: ${Gson().toJson(it)}")
         }
+        assert(true)
     }
 
     @Test
-    fun testAddItems(){
+    fun testAddItems() = runBlockingTest {
         val itemAdd = StorageItemEntity(
             2,
             "THANH NE ${System.currentTimeMillis()}",
             Random(100).nextInt().toString()
         )
-        GlobalScope.launch {
+        async {
             db.storageItemDao().insertItem(itemAdd)
             testGetAllItems()
         }
+        assert(true)
     }
 
     @Test
