@@ -11,7 +11,9 @@ abstract class BaseViewModel : ViewModel(){
     private var job: Job = Job()
     var ioContext: CoroutineContext = Dispatchers.IO + job
 
-    private val _isLoading = SingleLiveEvent<Boolean>().apply { value = false }
+    private val _isLoading = SingleLiveEvent<Boolean>().apply {
+        postValue(false)
+    }
     var isLoading: LiveData<Boolean> = _isLoading
 
     open fun onCreate() {}
