@@ -12,11 +12,18 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.gson.Gson
+import com.thanh_nguyen.baseproject.app.data.data_source.remote.LoginRemoteDataSource
 import com.thanh_nguyen.baseproject.app.data.local_data.room_db.StorageDatabase
+import com.thanh_nguyen.baseproject.app.data.network.ApiClient
+import com.thanh_nguyen.baseproject.app.domain.repositories.LoginRepository
+import com.thanh_nguyen.baseproject.app.domain.usecases.LoginUseCase
+import com.thanh_nguyen.baseproject.app.model.AuthorModel
 import com.thanh_nguyen.baseproject.app.model.entities.StorageItemEntity
+import com.thanh_nguyen.baseproject.app.model.respone.Result
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runBlockingTest
@@ -25,37 +32,46 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.kodein.di.Kodein
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.provider
+import org.mockito.Mock
+import org.mockito.MockitoAnnotations
 import kotlin.random.Random
 
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
 @SmallTest
-class LoginRepositoryImplTest{
+class LoginRepositoryImplTest: LoginRepository{
     val appContext = InstrumentationRegistry.getInstrumentation().targetContext
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
     lateinit var db: StorageDatabase
-    //private val mainThreadSurrogate = newSingleThreadContext("UI thread")
+
+    @Mock
+    val loginRemoteDataSource: LoginRemoteDataSource = LoginRemoteDataSource(
+        ApiClient.createService()
+    )
+
     @Before
     fun before(){
-        //Dispatchers.setMain(mainThreadSurrogate)
         db = Room.inMemoryDatabaseBuilder(
             ApplicationProvider.getApplicationContext(),
             StorageDatabase::class.java
         ).allowMainThreadQueries().build()
+
+
     }
 
     @After
     fun tearDown(){
         db.close()
-        //Dispatchers.resetMain() // reset main dispatcher to the original Main dispatcher
-        //mainThreadSurrogate.close()
     }
 
     @Test
     fun testGetAllItems() = runBlockingTest {
-        db.storageItemDao().getAllItems().collect {
+        getAllItems().collect {
             Log.e("THANH","get all items: ${Gson().toJson(it)}")
         }
         assert(true)
@@ -69,7 +85,7 @@ class LoginRepositoryImplTest{
             Random(100).nextInt().toString()
         )
         async {
-            db.storageItemDao().insertItem(itemAdd)
+            insertItem(itemAdd)
             testGetAllItems()
         }
         assert(true)
@@ -81,5 +97,27 @@ class LoginRepositoryImplTest{
             db.storageItemDao().deleteItem(1)
             testGetAllItems()
         }
+    }
+
+    @Test
+    fun testGetAuthor() = runBlockingTest{
+        async {
+            getAuthorInfo().collect {
+                Log.e("data receied:", "${it.data}")
+            }
+        }
+    }
+
+    override fun getAuthorInfo(): Flow<Result<AuthorModel>> {
+        Log.e("calling", "??")
+        return loginRemoteDataSource.getAuthorInfo()
+    }
+
+    override fun getAllItems(): Flow<List<StorageItemEntity>> {
+        return db.storageItemDao().getAllItems()
+    }
+
+    override suspend fun insertItem(item: StorageItemEntity) {
+        return db.storageItemDao().insertItem(item)
     }
 }
