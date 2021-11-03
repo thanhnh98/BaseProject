@@ -12,7 +12,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.gson.Gson
-import com.thanh_nguyen.baseproject.app.data.database.StorageDatabase
+import com.thanh_nguyen.baseproject.app.data.local_data.room_db.StorageDatabase
 import com.thanh_nguyen.baseproject.app.model.entities.StorageItemEntity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope

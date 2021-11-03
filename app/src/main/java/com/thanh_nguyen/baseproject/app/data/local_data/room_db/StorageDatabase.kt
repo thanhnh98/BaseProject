@@ -1,13 +1,11 @@
-package com.thanh_nguyen.baseproject.app.data.database
+package com.thanh_nguyen.baseproject.app.data.local_data.room_db
 
 import android.content.Context
-import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.thanh_nguyen.baseproject.app.data.database.dao.StorageItemDao
+import com.thanh_nguyen.baseproject.app.data.local_data.room_db.dao.StorageItemDao
 import com.thanh_nguyen.baseproject.app.model.entities.StorageItemEntity
-import timber.log.Timber
 
 @Database(version = 1, entities = [StorageItemEntity::class])
 abstract class StorageDatabase: RoomDatabase() {
