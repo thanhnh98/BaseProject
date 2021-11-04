@@ -12,8 +12,8 @@ class DaggerModule {
 }
 
 
-@Singleton
-@Component(modules = [DaggerModule::class])
-class DaggerComponent {
-
-}
+//@Singleton
+//@Component(modules = [DaggerModule::class])
+//class DaggerComponent {
+//
+//}
