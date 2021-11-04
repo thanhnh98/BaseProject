@@ -1,5 +1,7 @@
 package com.thanh_nguyen.baseproject
 
+import android.util.Log
+import com.thanh_nguyen.baseproject.utils.toJson
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -17,6 +19,21 @@ class ExampleUnitTest {
 
     @Test
     fun `thanh ne`(){
+        val fruits = listOf("cherry", "blueberry", "citrus", "apple", "apricot", "banana", "coconut")
 
+        val evenFruits = fruits.groupingBy { it.first() }
+            .fold(
+                { key, value ->
+                    value
+                },
+                { _, accumulator, element ->
+                    accumulator.also {
+                        println("dât ne: ${it}")
+                    }
+                }
+            )
+
+//        val sorted = evenFruits.values.sortedBy { it.first }
+        println(evenFruits.values.toString()) // [(a, []), (b, [banana]), (c, [cherry, citrus])]
     }
 }

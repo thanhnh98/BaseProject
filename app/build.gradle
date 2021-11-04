@@ -17,6 +17,7 @@ android {
         versionName AndroidConfigs.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testOptions.unitTests.includeAndroidResources = true
     }
 
     signingConfigs {
@@ -142,4 +143,8 @@ dependencies {
 
     //ktx
     implementation("androidx.collection:collection-ktx:1.2.0-beta01")
+
+    def dagger_version = "2.27"
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

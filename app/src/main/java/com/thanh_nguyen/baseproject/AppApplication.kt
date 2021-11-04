@@ -22,6 +22,7 @@ class AppApplication: Application(), LifecycleObserver, KodeinAware {
         LoginFacebookManager.init(this)
         LoginGoogleManager.init(this)
         SendBirdSdkHelper.init(this)
+
     }
 
     override val kodein: Kodein = Kodein.lazy {

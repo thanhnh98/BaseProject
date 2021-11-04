@@ -1,9 +1,9 @@
 package com.thanh_nguyen.baseproject.di
 
 import android.util.Log
-import com.google.android.gms.auth.api.signin.internal.Storage
-import com.thanh_nguyen.baseproject.app.data.database.StorageDatabase
-import com.thanh_nguyen.baseproject.app.data.database.dao.StorageItemDao
+import com.thanh_nguyen.baseproject.app.data.local_data.data_store.PreferenceDataStore
+import com.thanh_nguyen.baseproject.app.data.local_data.room_db.StorageDatabase
+import com.thanh_nguyen.baseproject.app.data.local_data.room_db.dao.StorageItemDao
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
@@ -19,6 +19,9 @@ val localModule = Kodein.Module(LOCAL_MODULE, false){
     }
     bind() from provider {
         createStorageDAO(instance())
+    }
+    bind() from singleton {
+        PreferenceDataStore(instance())
     }
 }
 
