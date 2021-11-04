@@ -54,6 +54,9 @@ object Versions{
     const val billing_version = "4.0.0"
 
     const val send_bird_version = "3.0.166"
+
+    //Data store
+    const val data_store = "1.0.0"
 }
 
 object Deps{
@@ -97,6 +100,7 @@ object Deps{
     const val lifecycle_livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle_livedata_ktx_version}"
     const val circle_imageview = "de.hdodenhof:circleimageview:${Versions.circleimageview_version}"
 
+    //firebase
     const val firebase_messaging_ktx = "com.google.firebase:firebase-messaging-ktx"
     const val firebase_analytics_ktx = "com.google.firebase:firebase-analytics-ktx"
     const val firebase_bom = "com.google.firebase:firebase-bom:${Versions.firebase_bom_version}"
@@ -106,4 +110,10 @@ object Deps{
     const val google_billing = "com.android.billingclient:billing-ktx:${Versions.billing_version}"
 
     const val send_bird = "com.sendbird.sdk:sendbird-android-sdk:${Versions.send_bird_version}"
+
+    //data store
+    const val data_store = "androidx.datastore:datastore:${Versions.data_store}"
+    const val data_store_core = "androidx.datastore:datastore-core:${Versions.data_store}"
+    const val data_store_prefs = "androidx.datastore:datastore-preferences:${Versions.data_store}"
+    const val data_store_prefs_core = "androidx.datastore:datastore-preferences-core:${Versions.data_store}"
 }

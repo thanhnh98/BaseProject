@@ -1,7 +1,7 @@
 package com.thanh_nguyen.baseproject.di
 
 import com.thanh_nguyen.baseproject.app.data.data_source.remote.LoginRemoteDataSource
-import com.thanh_nguyen.baseproject.app.data.database.dao.StorageItemDao
+import com.thanh_nguyen.baseproject.app.data.local_data.room_db.dao.StorageItemDao
 import com.thanh_nguyen.baseproject.app.data.repository.LoginRepositoryDecorator
 import com.thanh_nguyen.baseproject.app.data.repository.LoginRepositoryImpl
 import com.thanh_nguyen.baseproject.app.domain.repositories.LoginRepository

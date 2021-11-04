@@ -2,7 +2,7 @@
  * Created by Thanh Nguyen on 10/20/21, 4:14 PM
  */
 
-package com.thanh_nguyen.baseproject.app.data.database.dao
+package com.thanh_nguyen.baseproject.app.data.local_data.room_db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
