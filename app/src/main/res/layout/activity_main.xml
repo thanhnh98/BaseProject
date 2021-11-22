@@ -24,6 +24,7 @@
             app:tabBackground ="@color/colorPrimary"
             app:tabTextColor="@color/tab_color_selector"
             app:tabIconTint="@color/tab_color_selector"
+            android:visibility="gone"
         />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

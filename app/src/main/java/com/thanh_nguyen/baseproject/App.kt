@@ -19,7 +19,7 @@ class App: Application(), LifecycleObserver, KodeinAware {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        AppFirebaseMessageService.init(this)
+        //AppFirebaseMessageService.init(this)
         FirebaseManager.init()
         LoginFacebookManager.init(this)
         LoginGoogleManager.init(this)

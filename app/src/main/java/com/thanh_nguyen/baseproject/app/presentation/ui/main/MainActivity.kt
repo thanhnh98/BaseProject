@@ -18,14 +18,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private fun setupViewPager() {
         val fragments = listOf(
             MainStateModel(
-                "Profile",
-                R.drawable.ic_apple,
-                ProfileFragment()
-            ),
-            MainStateModel(
                 "Home",
                 R.drawable.ic_apple,
                 HomeFragment()
+            ),
+            MainStateModel(
+                "Profile",
+                R.drawable.ic_apple,
+                ProfileFragment()
             ),
         )
         val adapter = MainStateAdapter(this, fragments)
