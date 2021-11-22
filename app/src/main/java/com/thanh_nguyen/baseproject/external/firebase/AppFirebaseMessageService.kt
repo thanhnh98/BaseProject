@@ -10,7 +10,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.google.gson.Gson
-import com.thanh_nguyen.baseproject.AppApplication
+import com.thanh_nguyen.baseproject.App
 
 
 class AppFirebaseMessageService: FirebaseMessagingService() {
@@ -47,7 +47,7 @@ class AppFirebaseMessageService: FirebaseMessagingService() {
                         val token: String = task.result ?:""
 
                         // Log and toast
-                        Toast.makeText(AppApplication.getContext(), token, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(App.getInstance(), token, Toast.LENGTH_SHORT).show()
                     }
 
                 })

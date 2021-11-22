@@ -20,9 +20,9 @@ val localModule = Kodein.Module(LOCAL_MODULE, false){
     bind() from provider {
         createStorageDAO(instance())
     }
-    bind() from singleton {
-        PreferenceDataStore(instance())
-    }
+//    bind() from singleton {
+//        PreferenceDataStore(instance())
+//    }
 }
 
 fun createStorageDAO(db: StorageDatabase): StorageItemDao {

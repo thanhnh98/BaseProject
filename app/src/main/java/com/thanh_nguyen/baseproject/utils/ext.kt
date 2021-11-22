@@ -5,6 +5,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.pm.PackageManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,7 +52,7 @@ fun Any?.isNull() = this == null
 
 fun Double.formatPrice(pattern: String? = "###,###,###.00"): String = DecimalFormat(pattern).format(this)
 
-fun <VB: ViewDataBinding> inflateDataBinding(parent: ViewGroup, @LayoutRes layoutRes: Int, attachParent: Boolean = false): VB{
+inline fun <reified VB: ViewDataBinding> inflateDataBinding(parent: ViewGroup, @LayoutRes layoutRes: Int, attachParent: Boolean = false): VB{
     return DataBindingUtil.inflate(
         LayoutInflater.from(parent.context),
         layoutRes,
@@ -82,4 +83,8 @@ inline fun <reified T, reified LD: LiveData<T>> Fragment.observeLiveDataChanged(
 
 inline fun <reified T, reified LD: LiveData<T>> AppCompatActivity.observeLiveDataChanged(liveData: LD, observer: Observer<in T>){
     liveData.observe(this, observer)
+}
+
+fun cmn(msg: String){
+    Log.e("CMN", msg)
 }

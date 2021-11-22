@@ -2,6 +2,8 @@ package com.thanh_nguyen.baseproject
 
 import android.app.Application
 import android.content.Context
+import android.content.res.Resources
+import androidx.annotation.StringRes
 import androidx.lifecycle.LifecycleObserver
 import com.thanh_nguyen.baseproject.di.appModule
 import com.thanh_nguyen.baseproject.external.SendBirdSdkHelper
@@ -13,10 +15,10 @@ import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
 
-class AppApplication: Application(), LifecycleObserver, KodeinAware {
+class App: Application(), LifecycleObserver, KodeinAware {
     override fun onCreate() {
         super.onCreate()
-        context = this
+        instance = this
         AppFirebaseMessageService.init(this)
         FirebaseManager.init()
         LoginFacebookManager.init(this)
@@ -26,14 +28,27 @@ class AppApplication: Application(), LifecycleObserver, KodeinAware {
     }
 
     override val kodein: Kodein = Kodein.lazy {
-        import(androidXModule(this@AppApplication))
+        import(androidXModule(this@App))
         import(appModule)
     }
 
     companion object{
-        private var context: Context? = null
-        fun getContext(): Context{
-            return context!!
+        @Volatile
+        private var instance: App? = null
+
+        @JvmStatic
+        fun getInstance(): App = instance ?: synchronized(this) {
+            instance ?: App().also {
+                instance = it
+            }
+        }
+
+        fun getString(@StringRes strId: Int): String {
+            return getResources().getString(strId)
+        }
+
+        fun getResources(): Resources {
+            return getInstance().resources
         }
     }
 }
