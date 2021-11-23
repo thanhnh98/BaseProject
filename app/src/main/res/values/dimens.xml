@@ -7,6 +7,10 @@
     <dimen name="banner_width">320dp</dimen>
     <dimen name="banner_spacing">8dp</dimen>
     <dimen name="banner_preview_size">8dp</dimen>
+    <dimen name="number_large_extra">52sp</dimen>
+    <dimen name="number_large">52sp</dimen>
+    <dimen name="number_medium">24sp</dimen>
+    <dimen name="text_size_title">32sp</dimen>
 
     <dimen name="_2sp">2sp</dimen>
     <dimen name="_2.51sp">2.51sp</dimen>
