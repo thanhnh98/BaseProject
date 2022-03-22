@@ -47,24 +47,24 @@ class LoginActivity: BaseActivityMVVM<ActivityLoginBinding, LoginViewModel>() {
             }
             flApple.onClick {
                 loginApple()
-                firebaseManager.verifiedPhone("+84366234132", this@LoginActivity,
-                object :PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
-                    override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-                        Log.e("onVerificationCompleted", "onVerificationCompleted:" + credential)
-                        showMessage("phone verified succeed")
-                    }
-
-                    override fun onVerificationFailed(exp: FirebaseException) {
-                        Log.e("onVerificationFailed", "onVerificationFailed: ${exp.message}");
-                        showMessage("phone verified failed")
-                    }
-
-                    override fun onCodeSent(p0: String, p1: PhoneAuthProvider.ForceResendingToken) {
-                        super.onCodeSent(p0, p1)
-                        Log.e("onCodeSent", "onCodeSent:" + p0)
-                    }
-
-                })
+//                firebaseManager.verifiedPhone("+84366234132", this@LoginActivity,
+//                object :PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
+//                    override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+//                        Log.e("onVerificationCompleted", "onVerificationCompleted:" + credential)
+//                        showMessage("phone verified succeed")
+//                    }
+//
+//                    override fun onVerificationFailed(exp: FirebaseException) {
+//                        Log.e("onVerificationFailed", "onVerificationFailed: ${exp.message}");
+//                        showMessage("phone verified failed")
+//                    }
+//
+//                    override fun onCodeSent(p0: String, p1: PhoneAuthProvider.ForceResendingToken) {
+//                        super.onCodeSent(p0, p1)
+//                        Log.e("onCodeSent", "onCodeSent:" + p0)
+//                    }
+//
+//                })
             }
             fabEnter.onClick {
                 //AppFirebaseMessageService.getToken()
